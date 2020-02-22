@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :searches
   resources :series_lists
   resources :series
   get 'home/new'
