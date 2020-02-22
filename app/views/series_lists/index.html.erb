@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Series Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Api id,</th>
+      <th>Name,language,origin country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @series_lists.each do |series_list| %>
+      <tr>
+        <td><%= series_list.api_id, %></td>
+        <td><%= series_list.name,language,origin_country %></td>
+        <td><%= link_to 'Show', series_list %></td>
+        <td><%= link_to 'Edit', edit_series_list_path(series_list) %></td>
+        <td><%= link_to 'Destroy', series_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Series List', new_series_list_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Api id,:</strong>
+  <%= @series.api_id, %>
+</p>
+
+<p>
+  <strong>Name,language,origin country:</strong>
+  <%= @series.name,language,origin_country %>
+</p>
+
+<%= link_to 'Edit', edit_series_path(@series) %> |
+<%= link_to 'Back', series_index_path %>
