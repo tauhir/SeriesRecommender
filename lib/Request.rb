@@ -16,8 +16,9 @@ class Request
     end
 
     def get_json(query_path, query)
-      query_string = query.map{|k,v| "#{k}=#{URI.encode(v)}"}.join("&")
+      #query_string = query.map{|k,v| "#{k}=#{URI.encode(v)}"}.join("&")
       # path = query.empty?? root_path : "#{root_path}?#{query_string}" #might need to move this to #Request
+      
       response = api.get(query_path) do |req|
         query.each {|k,v| req.params[k] = v }
       end

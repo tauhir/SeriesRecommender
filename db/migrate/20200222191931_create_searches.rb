@@ -4,6 +4,8 @@ class CreateSearches < ActiveRecord::Migration[6.0]
 
       t.timestamps
       t.string :query 
+      t.integer :results
+      t.integer :pages
     end
   end
 end
