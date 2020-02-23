@@ -7,7 +7,8 @@ class Request
 
     def get(id)
       response, status = get_json(id)
-      status == 200 ? response : errors(response)
+      raise Exception.new("status: " + status.to_s) if status != 200
+      [response,status]
     end
 
     def errors(response)
@@ -15,10 +16,16 @@ class Request
       response.merge(error)
     end
 
+    # Returns JSON response for given path and query
+    #
+    # @param query_path [string] query path to be added to base 
+    # @param query [hash] hash with key value pairs e.g {'request':'Harry Potter'}
+    # @return array with Hash and response
     def get_json(query_path, query)
       #query_string = query.map{|k,v| "#{k}=#{URI.encode(v)}"}.join("&")
       # path = query.empty?? root_path : "#{root_path}?#{query_string}" #might need to move this to #Request
-      
+      puts 'getjson'
+      puts query
       response = api.get(query_path) do |req|
         query.each {|k,v| req.params[k] = v }
       end

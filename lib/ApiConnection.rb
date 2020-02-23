@@ -3,7 +3,7 @@ require 'json'
 
 class ApiConnection
 
-  BASE = 'https://api.themoviedb.org/3/' #base? this isn't the true base. 
+  BASE = 'https://api.themoviedb.org/3/' #base? this isn't the true base or maybe it is? 
 
   def self.api
     Faraday.new(url: BASE) do |faraday|

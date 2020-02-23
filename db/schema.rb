@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_22_191931) do
+ActiveRecord::Schema.define(version: 2020_02_23_171620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 2020_02_22_191931) do
     t.string "name"
     t.string "language"
     t.string "external_series", default: [], array: true
-    t.boolean "is_search", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "search_id", null: false
+    t.index ["search_id"], name: "index_series_lists_on_search_id"
   end
 
+  add_foreign_key "series_lists", "searches"
 end

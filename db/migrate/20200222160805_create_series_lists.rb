@@ -5,7 +5,6 @@ class CreateSeriesLists < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :language
       t.string :external_series, array: true, default: []
-      t.boolean :is_search, default: false
       t.timestamps
     end
   end
