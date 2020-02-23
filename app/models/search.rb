@@ -20,21 +20,14 @@ class Search < ApplicationRecord
 		api_response = Request.get_json(BASE,query_hash)
 		api_results = api_response[0]
 		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
-		#puts api_results["total_results"]
 		self.results = api_results["total_results"]
 		self.pages = api_results["total_pages"]
-		self.save
-		# self.results = api_results["total_results"]
-		# self.pages = api_results["total_pages"]
-		
+		self.save		
 		if self.results > 0
-			puts self.results
 			series = api_results["results"] # array of series hashes
 			series_ids = []
 			series.each { |show| series_ids.push( show['id'] ) }
-			puts self.id
 			SeriesList.create(:language => "en_US", :external_series => series_ids, :search_id => self.id)
-			puts "here now"
 		else
 			puts "wow"
 			# @todo no results

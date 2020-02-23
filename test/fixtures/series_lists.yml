@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  api_id,: MyString
-  name,language,origin_country: MyString
+# one:
+#   api_id: MyString
+#   name: TestGuy
+#   language: en_US
+#   external_series: [1,2,3]
 
-two:
-  api_id,: MyString
-  name,language,origin_country: MyString
+# two:
+#   api_id: MyString
+#   name: TestGuy
+#   language: en_US
+#   external_series: [1,2,3]
