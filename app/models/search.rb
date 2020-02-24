@@ -14,7 +14,7 @@ class Search < ApplicationRecord
  	# 
 	def complete_search
 		# do the actual api query here. then create series and finish query info
-		#puts query
+		# puts query
 		 # creating the hash here for now. Might make additional param to Request.rb if not DRY
 		query_hash = {'query': self.query}
 		api_response = Request.get_json(BASE,query_hash)

@@ -11,6 +11,7 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
+    # for now lets show the first result
   end
 
   # GET /searches/new
@@ -25,11 +26,11 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new(search_params)
+    @search = Search.new({:query => params[:query]})
     respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        format.json { render :show, status: :created, location: @search }
+        format.json { render :show, status: :created, location: @search } #should go to /series_list/show
       else
         format.html { render :new }
         format.json { render json: @search.errors, status: :unprocessable_entity }
@@ -69,6 +70,7 @@ class SearchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def search_params
-      params.fetch(:search, {})
+      
+      params.require(:query)
     end
 end
