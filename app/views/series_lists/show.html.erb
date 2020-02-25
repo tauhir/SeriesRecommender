@@ -1,14 +1,1 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Api id,:</strong>
-  <%= @series_list.api_id, %>
-</p>
-
-<p>
-  <strong>Name,language,origin country:</strong>
-  <%= @series_list.name,language,origin_country %>
-</p>
-
-<%= link_to 'Edit', edit_series_list_path(@series_list) %> |
-<%= link_to 'Back', series_lists_path %>
+<%= @series_list.get_series(@series_list.get_list)%>

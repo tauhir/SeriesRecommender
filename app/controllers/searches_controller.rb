@@ -27,14 +27,10 @@ class SearchesController < ApplicationController
   # POST /searches.json
   def create
     @search = Search.new({:query => params[:query]})
-    respond_to do |format|
-      if @search.save
-        format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        format.json { render :show, status: :created, location: @search } #should go to /series_list/show
-      else
-        format.html { render :new }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
+    if @search.save
+      redirect_to "series_lists/#{@search.id}"
+    else
+      raise Exception.new("no series series")
     end
   end
 

@@ -7,6 +7,10 @@ class Search < ApplicationRecord
 	has_many :SeriesList
 	BASE = 'https://api.themoviedb.org/3/search/tv'
 	after_create :complete_search
+
+	def get_series # maybe just the i
+		SeriesList.where(search_id: self.id).first
+	end
  	
  	private
 

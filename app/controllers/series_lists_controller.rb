@@ -4,12 +4,14 @@ class SeriesListsController < ApplicationController
   # GET /series_lists
   # GET /series_lists.json
   def index
+    byebug
     @series_lists = SeriesList.all
   end
 
   # GET /series_lists/1
   # GET /series_lists/1.json
   def show
+    @series_list = SeriesList.find_by_search_id(params[:id])
   end
 
   # GET /series_lists/new
@@ -64,11 +66,11 @@ class SeriesListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_series_list
-      @series_list = SeriesList.find(params[:id])
+      @series_list = SeriesList.find_by_search_id(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def series_list_params
-      params.require(:series_list).permit(:api_id,, :name,language,origin_country)
+      #params.require(:series_list).permit(:api_id,, :name,language,origin_country)
     end
 end

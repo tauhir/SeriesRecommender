@@ -26,8 +26,14 @@ class Request
       # path = query.empty?? root_path : "#{root_path}?#{query_string}" #might need to move this to #Request
       puts 'getjson'
       puts query
-      response = api.get(query_path) do |req|
-        query.each {|k,v| req.params[k] = v }
+      #byebug
+      if query.is_a?(Hash)
+        response = api.get(query_path) do |req|
+          query.each {|k,v| req.params[k] = v }
+        end
+      else
+        path = "#{query_path}#{path}"
+        response = api.get(query)
       end
       [JSON.parse(response.body), response.status]
     end
