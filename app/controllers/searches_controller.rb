@@ -28,7 +28,9 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new({:query => params[:query]})
     if @search.save
-      redirect_to "series_lists/#{@search.id}"
+      # redirect_to "series_lists/#{@search.id}"
+      # redirect_to :controller => series_lists 
+      redirect_to series_list_path(@search.id)
     else
       raise Exception.new("no series series")
     end
