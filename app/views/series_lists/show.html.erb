@@ -1,3 +1,15 @@
-
-<%= link_to 'Series List', series_list_path(@series_list) %>
-<%= @series_list.get_series(@series_list.get_list)%>
+<% series_list = (@series_list.get_list)%>
+<div class="row">
+	<% series_list.first(10).each do |id| %>
+		<% series = @series_list.get_series(id) %>
+		<div class="col-md-3">
+			<div class="card" style="">
+		  		<img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= series["poster_path"]%>" alt="<%= asset_path("No_image_available.png")%>">
+		  		<div class="card-body">
+		    		<p class="card-text"> <%= series['name']%></p>
+		    		<p class="card-text"> <%= series['overview']%></p>
+		  		</div>
+			</div>
+		</div>
+	<% end %>
+</div>
