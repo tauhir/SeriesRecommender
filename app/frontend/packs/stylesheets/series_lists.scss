@@ -3,17 +3,57 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
-.cards {
-  
-  display: flex;
-  flex-flow: row wrap;
-  
-  .card {
-    
-    background: white;
-    margin: 10px;
-    padding: 10px;
-    
-  	}
-  
-	}
+
+
+.card-img-top {
+	width:100%;
+	webkit-clip-path: inset(10% 0 20% 0);
+  	/* -
+    clip-path: inset(10% 0 20% 0);*/ /* values are from-top, from-right, from-bottom, from-left */    
+}
+
+.card-body {
+   position: relative;
+   margin-top: -30%;
+   color: #9FA7A9;
+   .card-title {
+      font-weight: 600;
+      color: #414345;
+   }
+   .card-text {
+      margin-top: 8px;
+      font-weight: 600;
+      line-height: 30px;
+   }
+}
+
+.card, .trailer-preview {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   &:hover {
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10), 0 8px 8px rgba(0, 0, 0, 0.18);
+   }   
+}
+
+.card {
+
+}
+
+.metadata {
+   background: none;
+   padding: 0;
+   position: relative;
+   border-style: none;	
+   font-size: 16px;
+   i, p {
+      float: left;
+   }
+   p {
+      margin-top: 0;
+      margin-left: 10px;
+   }
+   i {
+      color: #ff9d00;
+      margin-top: 5px;
+      margin-left: 1px;
+   }
+}

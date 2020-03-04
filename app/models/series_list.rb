@@ -15,4 +15,13 @@ class SeriesList < ApplicationRecord
 	def get_list
 		self.external_series
 	end
+
+	def get_genres(series)
+		genres_list = series['genres']
+		str = []
+		genres_list.each do |genre|
+			str.append(genre['name'])
+		end
+		str.join(', ')
+	end
 end
