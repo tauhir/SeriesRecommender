@@ -5,7 +5,7 @@
 		<% series = @series_list.get_series(id) %>
 		<div class="col-md-3">
 			<div class="card">
-                <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
 				<div class="card-body">
 					<h1 class="card-title"><%= series['name']%></h1>
 					<div class="container"/>
@@ -14,7 +14,7 @@
 								<i class="fa fa-star" aria-hidden="true"></i> 
 								<p><%= series['vote_average'] %>/10</p>
 							</div>
-							<div class="col-8 metadata"><%= @series_list.get_genres(series) %></div>
+							<div class="col-8 metadata"><%= @series_list.get_genres(series,3) %></div>
 						</div>
 					</div>
 					<p class="card-text"> <%= series['overview']%></p>

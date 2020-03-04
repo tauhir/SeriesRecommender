@@ -16,10 +16,11 @@ class SeriesList < ApplicationRecord
 		self.external_series
 	end
 
-	def get_genres(series)
+	def get_genres(series,amount)
 		genres_list = series['genres']
 		str = []
-		genres_list.each do |genre|
+		amount = genres_list.length <= amount ? genres_list.length : amount
+		genres_list[0..amount].each do |genre|
 			str.append(genre['name'])
 		end
 		str.join(', ')
