@@ -10,28 +10,33 @@
    height: 30rem;
    max-width: 100%;
 }
-
-.card-body {
-   color: #9FA7A9;
-	.card-title {
-		font-weight: 600;
-		color: #414345;
-		min-height: 7.5rem;
-   }
-   .card-text {
-		margin-top: 8px;
-		font-weight: 600;
-		line-height: 30px;
-		min-height: 6rem;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3; /* number of lines to show */
-
-   }
+.card-title {
+   font-weight: 600;
+   color: #414345;
+   min-height: 7.5rem;
+   color: white !important;
+   text-shadow: 2px 2px black;
 }
 
+.card-body {
+   color: white !important;
+}
+
+.card-text {
+   color:white;
+   margin-top: 8px;
+   font-weight: 600;
+   line-height: 30px;
+   min-height: 6rem;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   text-shadow: 1px 1px black;
+   font-size:1.2rem;
+
+}
 .card, .trailer-preview {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    &:hover {
@@ -49,13 +54,18 @@
 }
 .card-img-overlay {
 	bottom: 0px;
+   
 }
+ .inner {
+   display:none;
+ }
 .metadata {
    background: none;
    padding: 0;
    position: relative;
    border-style: none;	
    font-size: 16px;
+   color:white;
    i, p {
       float: left;
    }
