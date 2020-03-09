@@ -8,9 +8,15 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+ruby, bundler,gem install bundler, ruby-foreman, psql, pg-admin libpq-dev build-essential
+bundle install
+https://classic.yarnpkg.com/en/docs/install#debian-stable -yarn 
+yarn install cmd
+foreman start
+
 
 * Configuration
-
+https://github.com/bkeepers/dotenv =env file
 * Database creation
 
 * Database initialization
