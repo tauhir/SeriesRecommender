@@ -20,7 +20,7 @@ https://github.com/bkeepers/dotenv =env file
 * Database creation
 
 * Database initialization
-
+sudo pg_ctlcluster 10 main start - for some reason I have to do this on WSL 2.
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)

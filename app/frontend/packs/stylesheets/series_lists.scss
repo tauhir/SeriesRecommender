@@ -87,3 +87,17 @@
    -webkit-box-orient: vertical;
    -webkit-line-clamp: 3; /* number of lines to show */
 }
+
+.fa-thumbs-up, .fa-thumbs-down {
+   color:rgb(77, 70, 70);
+   font-size: 3rem;
+}
+.fa-thumbs-up:hover, .fa-thumbs-down:hover {
+   float:none !important;
+   color:red;
+   font-size: 4rem;
+}
+
+#thumbs {
+   text-align: center;
+}
