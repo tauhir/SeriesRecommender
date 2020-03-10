@@ -11,7 +11,11 @@ class Search < ApplicationRecord
 	def get_series # maybe just the i
 		SeriesList.where(search_id: self.id).first
 	end
- 	
+	 
+	def create_series_list(language,ext_series,search_id)
+		# @todo can probably remove search_id param then use self.id
+		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id)
+	end
  	private
 
  	# takes query parameter and calls API to do search. Creates SeriesList object
@@ -31,7 +35,7 @@ class Search < ApplicationRecord
 			series = api_results["results"] # array of series hashes
 			series_ids = []
 			series.each { |show| series_ids.push( show['id'] ) }
-			SeriesList.create(:language => "en_US", :external_series => series_ids, :search_id => self.id)
+			create_series_list("en_US",series_ids,self.id)
 		else
 			puts "wow"
 			# @todo no results
