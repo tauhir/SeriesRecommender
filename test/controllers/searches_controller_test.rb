@@ -45,4 +45,8 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to searches_url
   end
+  
+  test "user gave opinion" do
+    
+  end
 end

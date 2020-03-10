@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_23_171620) do
+ActiveRecord::Schema.define(version: 2020_03_10_193009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_171620) do
     t.string "query"
     t.integer "results"
     t.integer "pages"
+    t.boolean "type"
   end
 
   create_table "series_lists", force: :cascade do |t|
