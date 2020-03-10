@@ -4,7 +4,7 @@
 	<% series_list.first(10).each do |id| %>
 		<% series = @series_list.get_series(id) %>
 		<div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0 ">
-			<div class="card img-fluid" style="width:500px" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+			<div class="card img-fluid" style="width:500px" onmouseover="InfoToggle(this,true)" onmouseout="InfoToggle(this,false)">
 			  <img class="card-img-top" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
 			  <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
 			  	<div class ="inner">
@@ -20,8 +20,8 @@
 					</div>
 					<p class="card-text"> <%= series['overview']%></p>
 					<div id ="thumbs">
-						<i class="fas fa-thumbs-up" aria-hidden="true"></i>
-						<i class="fas fa-thumbs-down"  aria-hidden="true"></i>
+						<i class="fas fa-thumbs-up" aria-hidden="true" onclick=""></i>
+						<i class="fas fa-thumbs-down"  aria-hidden="true" onclick=""></i>
 					</div>
 					</div>
 				</div>
