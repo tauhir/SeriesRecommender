@@ -4,6 +4,7 @@ require 'ApiConnection'
 class Search < ApplicationRecord
 	# @todo need to update this to be able to search next page and add to list. might need to add current page attrib?
 	# attr_accessor :query, :results, :pages
+	attr_accessor :external_series
 	has_many :SeriesList
 	BASE = 'https://api.themoviedb.org/3/search/tv'
 	after_create :complete_search
@@ -11,11 +12,12 @@ class Search < ApplicationRecord
 	def get_series # maybe just the i
 		SeriesList.where(search_id: self.id).first
 	end
-	 
-	def create_series_list(language,ext_series,search_id)
+	
+	def create_series_list(ext_series, language:"en_US",search_id: self.id, search_type: nil)
 		# @todo can probably remove search_id param then use self.id
-		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id)
+		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id, :search_type => search_type)
 	end
+
  	private
 
  	# takes query parameter and calls API to do search. Creates SeriesList object
@@ -35,7 +37,7 @@ class Search < ApplicationRecord
 			series = api_results["results"] # array of series hashes
 			series_ids = []
 			series.each { |show| series_ids.push( show['id'] ) }
-			create_series_list("en_US",series_ids,self.id)
+			create_series_list(series_ids)
 		else
 			puts "wow"
 			# @todo no results

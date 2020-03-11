@@ -59,6 +59,23 @@ class SearchesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+   # User thumbs up/thumbs downs a show
+  # this should create a series list for likes or dislikes or append if
+  def opinion
+    @search = Search.find_by_id(params["searchId"])
+    @seriesId = params["seriesId".to_i]
+    params["liked"].eql?("true") ? type = true : type = false #ruby changes boolean to string somehow, probably due to params?
+    series = SeriesList.find_by(id: @search.id).try(:where, search_type: type) # shouldn't need first because there should only be one
+    if series 
+      #append to series
+      series.external_series.append([params["seriesId"]])
+    else
+      #create series list
+      series = @search.create_series_list([params["seriesId"]], search_type: type)
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
