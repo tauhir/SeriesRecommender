@@ -4,8 +4,13 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
+one:
+    id: 2
+    created_at: '2020-03-09 12:09:57'
+    updated_at: '2020-03-09 12:09:57'
+    query: Friends
+    results: 225
+    pages: 12
+
 two: {}
 # column: value
