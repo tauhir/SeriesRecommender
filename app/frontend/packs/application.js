@@ -33,7 +33,11 @@ function InfoToggle(element, showState) {
 // checks if show is liked, disliked
 // goes to search page, giving user ability to search for new show or displays similar below
 function showrating(seriesID, state) {
+	if (state) {
+		//user likes the show so we should send them to the search page again but also display similar shows
+		
 
+	}
 }
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr
