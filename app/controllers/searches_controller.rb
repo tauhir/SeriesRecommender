@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: [:show, :edit, :update, :destroy]
+  before_action :set_search, only: [:edit, :update, :destroy]
   
 
   # GET /searches
@@ -11,7 +11,13 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    # for now lets show the first result
+    
+    if @search
+      #this for when brought here locally
+    else 
+      byebug
+    end
+    # this should display the current search with recommended shows below
   end
 
   # GET /searches/new
@@ -60,20 +66,22 @@ class SearchesController < ApplicationController
     end
   end
   
-   # User thumbs up/thumbs downs a show
+  # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
+  # this call also determine whether to post to show action or respond to
   def opinion
     @search = Search.find_by_id(params["searchId"])
-    @seriesId = params["seriesId".to_i]
+    seriesId = [params["seriesId"]]
     params["liked"].eql?("true") ? type = true : type = false #ruby changes boolean to string somehow, probably due to params?
     series = SeriesList.find_by(id: @search.id).try(:where, search_type: type) # shouldn't need first because there should only be one
     if series 
       #append to series
-      series.external_series.append([params["seriesId"]])
+      series.external_series.append(seriesId)
     else
       #create series list
-      series = @search.create_series_list([params["seriesId"]], search_type: type)
+      series = @search.create_series_list(seriesId, search_type: type)
     end
+    render json: {search: @search}, status: :ok
   end
 
 

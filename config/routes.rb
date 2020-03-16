@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'home/new'
   get 'home/index'
   post '/searches/opinion', to: 'searches#opinion', as: 'opinion'
+  get 'searches/show', to: 'searches#show', as: 'show_search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
