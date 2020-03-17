@@ -20,8 +20,15 @@ function noImage(element) {
   element.src=FooImage;
 }
 
-//replaces previously used showInfo and HideInfo functions
-// takes element, determines its display property and switches it
+/*
+ replaces previously used showInfo and HideInfo functions
+ takes element, determines its display property and switches the property
+ == Parameters:
+ 	element::
+ 		element that called function
+ 	showState::
+ 		boolean value to set seriesList type
+*/	
 function InfoToggle(element, showState) {
 	if (showState) {
 		element.querySelector(".inner").style.display = "block";
@@ -30,11 +37,21 @@ function InfoToggle(element, showState) {
 		element.querySelector(".inner").style.display = "none";
 	}
 }
-// checks if show is liked, disliked
-// goes to search page, giving user ability to search for new show or displays similar below
-// if in search, the search should be hidden
-// if in recommends, the show should be hidden.
-//and landing page
+
+/*
+ checks if show is liked, disliked
+ goes to search page, giving user ability to search for new show or displays similar below
+ if in search, the search should be hidden
+ if in recommends, the show should be hidden.
+ == Parameters:
+ 	seriesId::
+ 		element that called function
+ 	state::
+ 		boolean value to set seriesList type
+ 	searchId::
+		searchId of the seriesList to find the search object
+
+*/	
 const url ='http://'+ window.location.host + '/searches/opinion'
 
 function showrating(seriesId, state,searchId, currentobj) {
