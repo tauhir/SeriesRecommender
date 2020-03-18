@@ -54,7 +54,7 @@ function InfoToggle(element, showState) {
 */	
 const url ='http://'+ window.location.host + '/searches/opinion'
 
-function showrating(seriesId, state,searchId, currentobj) {
+function showrating(seriesId, state,searchId,object) {
 	console.log(seriesId, state,searchId);
 	fetch(url, {
 		headers: {"Content-type": "application/json; charset=UTF-8" },
@@ -67,8 +67,8 @@ function showrating(seriesId, state,searchId, currentobj) {
 	  })
 	  .then(json)
 	  .then(function (data) {
-		  console.log(currentobj);
-		after_opinion(data);
+		  // /console.log(object);
+		after_opinion(object);
 
 	  })
 	  .catch(function (error) {
@@ -84,12 +84,14 @@ function showrating(seriesId, state,searchId, currentobj) {
 
 function after_opinion(data) {
 
-	var el = this;
+	var el = data;
 	var parent = null;
-	while (el != null) {
-		console.log(el.id)
+	var id = el.id;
+	while (el != null && el.id != "series" && el.id != "search" ) {
 		el = el.parentNode
+		id = el.id;
 	}
+	console.log(id);
 }
 function json(response) {
 	console.log(response);
