@@ -68,7 +68,7 @@ function showrating(seriesId, state,searchId,object) {
 	  .then(json)
 	  .then(function (data) {
 		  // /console.log(object);
-		after_opinion(object);
+		after_opinion(object,seriesId);
 
 	  })
 	  .catch(function (error) {
@@ -82,16 +82,24 @@ function showrating(seriesId, state,searchId,object) {
 	}
 }
 
-function after_opinion(data) {
+function after_opinion(data, seriesId) {
 
 	var el = data;
+	console.log(el);
 	var parent = null;
 	var id = el.id;
 	while (el != null && el.id != "series" && el.id != "search" ) {
 		el = el.parentNode
 		id = el.id;
 	}
-	console.log(id);
+	
+	var tile = document.getElementById(seriesId+"_tile");
+	if ( id == "search" ) {
+		// we should now hide the card
+		// @todo check to see if no search options left and let user know
+		console.log(tile);
+		tile.style.visibility = "collapse";
+	}
 }
 function json(response) {
 	console.log(response);
