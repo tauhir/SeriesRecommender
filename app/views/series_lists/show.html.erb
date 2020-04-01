@@ -1,31 +1,4 @@
-<%= stylesheet_pack_tag 'stylesheets/series_lists' %>
-<% series_list = (@series_list.get_list)%>
+
 <div class="row no-gutters" id="search">
-    <% series_list.first(10).each do |id| %>
-    <% series = @series_list.get_series(id) %>
-    <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0 " id= "<%=id%>_tile">
-        <div class="card img-fluid" style="width:500px" onmouseover="InfoToggle(this,true)" onmouseout="InfoToggle(this,false)">
-            <img class="card-img-top" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
-            <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
-                <div class="inner">
-                    <h1 class="card-title"><%= series['name']%></h1>
-                    <div class="container" />
-                    <div class="row">
-                        <div class="col-4 metadata">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <p><%= series['vote_average'] %>/10</p>
-                        </div>
-                        <div class="col-8 metadata"><%= @series_list.get_genres(series,3) %></div>
-                    </div>
-                </div>
-                <p class="card-text"> <%= series['overview']%></p>
-                <div id="thumbs">
-                    <i class="fas fa-thumbs-up" aria-hidden="true" onclick="showrating(<%= series['id']%>, true, <%= @series_list.search_id %>,this )"></i>
-                    <i class="fas fa-thumbs-down" aria-hidden="true" onclick="showrating(<%= series['id']%>, false, <%= @series_list.search_id%>,this )"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<% end %>
+    <%= render "shared/tiles"%>
 </div>
