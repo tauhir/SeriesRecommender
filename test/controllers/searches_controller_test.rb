@@ -45,8 +45,24 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to searches_url
   end
-  
+
   test "user gave opinion" do
-    
+    self.setup
+    post opinion_url, params: { "seriesId": '0001', "liked": true, "searchId":2 }
+    @series_list = SeriesList.where(search_type: true).find_by(search_id: @search.id)
+    assert @series_list.try(:external_series).try(:include?, '0001')
+
+    #checks if appending works
+    post opinion_url, params: { "seriesId": '0002', "liked": true, "searchId":2 }
+    @series_list = SeriesList.where(search_type: true).find_by(search_id: @search.id)
+    assert @series_list.try(:external_series), ["0001","0002"]
+
+    post opinion_url, params: { "seriesId": '0003', "liked": false, "searchId":2 }
+    @series_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
+    assert @series_list.try(:external_series), ["0003"]
+
+    post opinion_url, params: { "seriesId": '0004', "liked": false, "searchId":2 }
+    @series_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
+    assert @series_list.try(:external_series), ["0003","0004"]
   end
 end

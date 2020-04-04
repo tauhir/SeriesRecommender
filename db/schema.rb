@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_193009) do
+ActiveRecord::Schema.define(version: 2020_03_10_203558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_03_10_193009) do
     t.string "query"
     t.integer "results"
     t.integer "pages"
-    t.boolean "type"
   end
 
   create_table "series_lists", force: :cascade do |t|
@@ -32,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_193009) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "search_id", null: false
+    t.boolean "search_type"
     t.index ["search_id"], name: "index_series_lists_on_search_id"
   end
 
