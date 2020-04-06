@@ -15,6 +15,7 @@ class SearchTest < ActiveSupport::TestCase
 	search = Search.create({'current_query':'How I'})
 	assert search.query_list == ['How I']
 	search.new_query('friends')
-	assert search.query_list == ['How I', 'friends']
+	
+	assert( search.query_list == ['How I', 'friends'], "Did not append new query: #{search.query_list}")
   end
 end
