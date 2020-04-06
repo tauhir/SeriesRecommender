@@ -10,4 +10,11 @@ class SearchTest < ActiveSupport::TestCase
 	list = SeriesList.where( search_id: search.id).order(:created_at).first
   	assert list['external_series'].include? '1399'
   end
+
+  test 'add to query_list' do
+	search = Search.create({'current_query':'How I'})
+	assert search.query_list == ['How I']
+	search.new_query('friends')
+	assert search.query_list == ['How I', 'friends']
+  end
 end
