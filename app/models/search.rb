@@ -26,12 +26,13 @@ class Search < ApplicationRecord
 		# do the actual api query here. then create series and finish query info
 		# puts query
 		 # creating the hash here for now. Might make additional param to Request.rb if not DRY
-		query_hash = {'query': self.query}
+		query_hash = {'query': self.current_query}
 		api_response = Request.get_json(BASE,query_hash)
 		api_results = api_response[0]
 		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
 		self.results = api_results["total_results"]
 		self.pages = api_results["total_pages"]
+		self.query_list = [self.current_query]
 		self.save		
 		if self.results > 0
 			series = api_results["results"] # array of series hashes
