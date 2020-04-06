@@ -1,1 +1,5 @@
-<%= @search %>
+<%= render  "layouts/searchbar" %>
+<hr>
+<div class="row no-gutters" id="search">
+    <%= render "shared/tiles", locals: { series_list: @search } %>
+</div>
