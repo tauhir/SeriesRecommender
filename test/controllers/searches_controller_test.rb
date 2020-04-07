@@ -34,7 +34,10 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update search" do
-    patch search_url(@search), params: { search: {  } }
+    list = @search.query_list
+    patch search_url(@search), params: { "query" => "mother" }
+    list.append("mother")
+    assert( @search.query_list == list, "query_list not matching expected result #{list}")
     assert_redirected_to search_url(@search)
   end
 

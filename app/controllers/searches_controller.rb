@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
     if @search
       #this for when brought here locally
     else 
-      byebug
+      @search = Search.find_by(id: params[:id])
     end
     # this should display the current search with recommended shows below
   end
@@ -32,7 +32,7 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new({:query => params[:query]})
+    @search = Search.new({:current_query => params[:query]})
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
@@ -46,7 +46,8 @@ class SearchesController < ApplicationController
   # PATCH/PUT /searches/1.json
   def update
     respond_to do |format|
-      if @search.update(search_params)
+      
+      if @search.update(:current_query => params[:query])
         format.html { redirect_to @search, notice: 'Search was successfully updated.' }
         format.json { render :show, status: :ok, location: @search }
       else
@@ -93,7 +94,6 @@ class SearchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def search_params
-      
       params.require(:query)
     end
 end
