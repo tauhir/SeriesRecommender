@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
     if @search
       #this for when brought here locally
     else 
-      byebug
+      @search = Search.find_by(id: params[:id])
     end
     # this should display the current search with recommended shows below
   end
