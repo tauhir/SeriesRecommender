@@ -3,17 +3,43 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+.panel {
+   width: 100%;
+   display: block;
+   padding: 30px 0;
+}
 
+.page_wrapper {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
 
+.style_1 {
+   margin-left: 30px;
+   position: relative;
+   top: 0;
+   left: 0;
+   display: flex;
+   flex-wrap: wrap;
+   align-content: flex-start;
+   border: 1px solid #e3e3e3;
+   border-radius: var(--imageBorderRadius);
+   overflow: hidden;
+   margin-top: 30px;
+   width: calc(((100vw - 260px - 80px - 64px) / 2));    
+}
 .card-img-top {
     -webkit-clip-path: inset(10% 0 20% 0);
-    height: 30rem;
-    max-width: 100%;
+    height:calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5); 
+    max-width: calc(((100vw - 80px - 260px - 64px) / 2));;
  }
  .card-title {
-    font-weight: 600;
+    font-size: 2em;
+    font-weight: 700;
     color: #414345;
-    min-height: 7.5rem;
+    min-height: 1px;
     color: white !important;
     text-shadow: 2px 2px black;
  }
@@ -25,8 +51,8 @@
  .card-text {
     color:white;
     margin-top: 8px;
-    font-weight: 600;
-    line-height: 30px;
+    font-weight: 5rem;
+    line-height: 1rem;
     min-height: 6rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -45,12 +71,9 @@
  }
  
  .card {
-    border-radius: 8pt;
-    border-style: none;
-    overflow: hidden;
-    transform: scale(0.8);
-    margin: 0;
-    border: 0;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border: 1px solid rgba(var(--lightGrey), 1);
+   background-color: #fff;
  }
  .card-img-overlay {
      bottom: 0px;
