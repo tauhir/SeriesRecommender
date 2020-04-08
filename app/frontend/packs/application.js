@@ -18,6 +18,8 @@ import FooImage from 'packs/images/image.png'
 function noImage(element) {
   //console.log("Hello from func");
   element.src=FooImage;
+  element.style.maxWidth  = "100%";
+  element.style.maxHeight = "100%";
 }
 
 /*
