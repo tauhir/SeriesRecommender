@@ -4,12 +4,12 @@
         <a href="#">Popular</a><br>
         <a href="#">My Searches</a><br>
         <div class="wrap">
-            <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+            <form action="/searches" class="search" method="post">
+                <input type="text" class="searchTerm" type="search" placeholder="Game of Thrones" id ='query' name="query">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
-            </div>
+            </form>
         </div>
     </div>
     <div id="smallbar">
