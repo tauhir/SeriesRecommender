@@ -105,12 +105,29 @@ function json(response) {
 	console.log(response);
 	return response.json()
   }
+
+
+var small = true;
+function toggleSidebar() {
+if (small) {
+	console.log("closing sidebar");
+	document.getElementById("mySidebar").style.width = "250px";
+	document.getElementById("main").style.marginLeft = "250px";
+	small = false;
+} else {
+	console.log("closing sidebar");
+	document.getElementById("mySidebar").style.width = "85px";
+	document.getElementById("main").style.marginLeft = "85px";
+	small = true;
+}
+}
   
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr
 window.noImage = noImage;
 window.InfoToggle = InfoToggle;
 window.showrating = showrating;
+window.toggleSidebar = toggleSidebar;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
