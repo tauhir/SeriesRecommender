@@ -110,14 +110,18 @@ function json(response) {
 var small = true;
 function toggleSidebar() {
 if (small) {
-	console.log("closing sidebar");
+	console.log("opening sidebar");
 	document.getElementById("mySidebar").style.width = "250px";
 	document.getElementById("main").style.marginLeft = "250px";
+	document.getElementById("wholebar").style.display = "inline-block";
+	document.getElementById("smallbar").style.display = "none";
 	small = false;
 } else {
 	console.log("closing sidebar");
 	document.getElementById("mySidebar").style.width = "85px";
 	document.getElementById("main").style.marginLeft = "85px";
+	document.getElementById("wholebar").style.display = "none";
+	document.getElementById("smallbar").style.display = "inline-block";
 	small = true;
 }
 }

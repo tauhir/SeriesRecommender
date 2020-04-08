@@ -1,5 +1,20 @@
 <%= stylesheet_pack_tag 'stylesheets/shared' %>
 <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
-    <a href="#">about</a><br>
-    <a href="#">about</a><br>
+    <div id="wholebar">
+        <a href="#">Popular</a><br>
+        <a href="#">My Searches</a><br>
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="smallbar">
+        <i class="fas fa-tv fa-3x icons"></i><br>
+        <i class="fas fa-star fa-3x icons"></i><br>
+        <i class="fas fa-search fa-3x icons"></i><br>
+    </div>
 </div>
