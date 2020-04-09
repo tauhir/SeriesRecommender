@@ -2,3 +2,21 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+
+.SearchContainer {
+    height: 70vh;
+    width:100%;
+    background:#f00;
+}
+
+.RecommendsContainer {
+    height: 30vh;
+    width:100%;
+    border: black;
+    background:rgba(25, 0, 255, 0.726);
+}
+
+.content {
+    height: inherit;
+    overflow:auto; 
+}
