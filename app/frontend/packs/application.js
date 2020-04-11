@@ -12,6 +12,7 @@ window.jQuery = window.$ = require('jquery')
 import 'bootstrap/dist/js/bootstrap';
 import 'packs/stylesheets.scss'
 import FooImage from 'packs/images/image.png'
+import 'slick-carousel/slick/slick';
 
 //console.log("Hello from hello.js");
 
