@@ -15,6 +15,18 @@ import FooImage from 'packs/images/image.png'
 import 'slick-carousel/slick/slick';
 
 //console.log("Hello from hello.js");
+$(document).ready(function(){
+	$('.my-carousel').slick({
+		slidesToShow: 2,
+		responsive: [{
+		  breakpoint: 500,
+		  settings: {
+			slidesToShow: 1,
+		  }
+		}]
+	  });
+  });
+
 
 function noImage(element) {
   //console.log("Hello from func");
@@ -55,7 +67,6 @@ function InfoToggle(element, showState) {
 
 */	
 const url ='http://'+ window.location.host + '/searches/opinion'
-
 function showrating(seriesId, state,searchId,object) {
 	console.log(seriesId, state,searchId);
 	fetch(url, {
