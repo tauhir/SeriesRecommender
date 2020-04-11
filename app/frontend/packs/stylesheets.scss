@@ -14,7 +14,7 @@ $slick-loader-path: "~slick-carousel/slick/";
 }
 
 .RecommendsContainer {
-    height: 30vh;
+    height: 29vh;
     width:100%;
     border: black;
     background:rgba(25, 0, 255, 0.726);
@@ -23,5 +23,10 @@ $slick-loader-path: "~slick-carousel/slick/";
 .content {
     height: inherit;
     overflow:auto; 
+
+}
+
+.content2 {
+    height: inherit;
 
 }

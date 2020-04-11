@@ -21,7 +21,18 @@
    flex-wrap: wrap;
 }
 
-.style_1 {
+.my-carousel {
+   margin-left: 0;
+}
+
+.my-carousel .slick-next:before {
+   font-family: "Font Awesome"; 
+   font-weight: 900; 
+   content: "\f104";
+   font-size: 3rem;
+   color: black;
+}
+.search_card {
    margin-left: 30px;
    position: relative;
    top: 0;
@@ -38,19 +49,16 @@
    //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
 }
 
-.style_1 {
-   
+.carousel_card {
    margin-left: 30px;
    position: relative;
    top: 0;
    left: 0;
-   flex-basis: 21%;
-   align-content: flex-start;
    border: 1px solid #e3e3e3;
    border-radius: var(--imageBorderRadius);
    overflow: hidden;
-   margin-top: 30px;
    background: #c4c4c4;
+   max-height: 30vh;
    //width: calc(((100vw - 260px - 80px - 64px) / 2));
    //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
 }
@@ -192,6 +200,7 @@
  #main {
    margin-left: 85px;
    transition: margin-left 0.5s;
+   width:100%;
  }
  
  @media screen and (max-height: 450px) {
