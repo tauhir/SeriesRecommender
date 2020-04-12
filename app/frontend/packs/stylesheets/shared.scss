@@ -84,6 +84,7 @@
     min-height: 1px;
     color: white !important;
     text-shadow: 2px 2px black;
+    width:inherit;
  }
  
  .card-body {
@@ -100,10 +101,12 @@
     font-weight: 5rem;
     text-shadow: 1px 1px black;
     font-size:1.2em;
+    width: 90%;
    // line-height: 1rem;
    // min-height: 6rem;
  }
  
+
  .card, .trailer-preview {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     &:hover {
@@ -122,14 +125,17 @@
  }
   .inner {
     display:none;
+    width: 90%;
+    
   }
  .metadata {
     background: none;
     padding: 0;
     position: relative;
     border-style: none;	
-    font-size: 16px;
-    color:white;
+    font-size: 1rem;
+    color:white;    
+    text-shadow: 1px 1px black;
     i, p {
        float: left;
     }
@@ -143,15 +149,7 @@
        margin-left: 1px;
     }
  }
- 
- .giveMeEllipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* number of lines to show */
- }
- 
+
  .fa-thumbs-up, .fa-thumbs-down {
     color:rgb(77, 70, 70);
     font-size: 3rem;
