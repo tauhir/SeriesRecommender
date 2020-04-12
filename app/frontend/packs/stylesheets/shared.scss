@@ -24,13 +24,21 @@
 .my-carousel {
    margin-left: 0;
 }
-
-.my-carousel .slick-next:before {
-   font-family: "Font Awesome"; 
-   font-weight: 900; 
-   content: "\f104";
-   font-size: 3rem;
-   color: black;
+.nextArrowBtn{
+   position: absolute;
+   z-index: 1000;
+   top: 30%;
+   right: 0;
+   color: #BFAFB2;
+   font-size: 4rem;
+}
+.prevArrowBtn{
+   position: absolute;
+   z-index: 1000;
+   top: 30%;
+   left: 0;
+   color: #BFAFB2;
+   font-size: 4rem;
 }
 .search_card {
    margin-left: 30px;
@@ -66,7 +74,7 @@
    background-color: #c4c4c4 !important;
 }
 .card-img-top {
-    -webkit-clip-path: inset(10% 0 20% 0);
+   -webkit-clip-path: inset(10% 0 20% 0);
     //height:calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5); 
     //max-width: calc(((100vw - 80px - 260px - 64px) / 2));;
  }
@@ -188,20 +196,7 @@
    color: #f1f1f1;
  }
  
- main .sidebar {
-   position: absolute;
-   top: 0;
-   right: 25px;
-   font-size: 36px;
-   margin-left: 50px;
- }
- 
- 
- #main {
-   margin-left: 85px;
-   transition: margin-left 0.5s;
-   width:100%;
- }
+
  
  @media screen and (max-height: 450px) {
    .sidebar {

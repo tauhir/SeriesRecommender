@@ -30,3 +30,20 @@ $slick-loader-path: "~slick-carousel/slick/";
     height: inherit;
 
 }
+
+main .sidebar {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  
+  #main {
+    margin-left: 85px;
+    transition: margin-left 0.5s;
+    width:inherit;
+    max-height: 100vh;
+    overflow: hidden;
+  }

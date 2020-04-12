@@ -21,6 +21,8 @@ $(document).ready(function(){
 		infinite: true,
 		arrows: true,
 		adaptiveHeight: true,
+		nextArrow: '<i class="fas fa-chevron-right nextArrowBtn"></i>',
+		prevArrow: '<i class="fas fa-chevron-left prevArrowBtn"></i>',	  
 		responsive: [{
 		  breakpoint: 500,
 		  settings: {
