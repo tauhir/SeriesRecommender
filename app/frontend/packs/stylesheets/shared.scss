@@ -60,12 +60,13 @@
    border-radius: var(--imageBorderRadius);
    overflow: hidden;
    background: #c4c4c4;
+   background-color: black;
    max-height: 30vh;
    //width: calc(((100vw - 260px - 80px - 64px) / 2));
    //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
 }
 .bg-primary {
-   background-color: #c4c4c4 !important;
+   background-color: black !important;
 }
 .search_card>.card-img-top {
    -webkit-clip-path: inset(10% 0 20% 0);
@@ -73,7 +74,6 @@
    max-width: 100%;
  }
 .card-img-top {
-   -webkit-clip-path: inset(10% 0 20% 0);
    height: 30vh;
    width: auto;
  }
@@ -90,21 +90,20 @@
     color: white !important;
  }
  
+    
  .card-text {
     color:white;
-    margin-top: 8px;
-    font-weight: 5rem;
-    line-height: 1rem;
-    min-height: 6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    font-weight: 5rem;
     text-shadow: 1px 1px black;
-    font-size:1.2rem;
- 
+    font-size:1.2em;
+   // line-height: 1rem;
+   // min-height: 6rem;
  }
+ 
  .card, .trailer-preview {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     &:hover {
