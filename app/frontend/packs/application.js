@@ -17,7 +17,7 @@ import 'slick-carousel/slick/slick';
 //console.log("Hello from hello.js");
 $(document).ready(function(){
 	$('.my-carousel').slick({
-		slidesToShow: 6,
+		slidesToShow: 8,
 		infinite: true,
 		arrows: true,
 		adaptiveHeight: true,
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		responsive: [{
 		  breakpoint: 500,
 		  settings: {
-			slidesToShow: 1,
+			slidesToShow: 3,
 		  }
 		}]
 	  });

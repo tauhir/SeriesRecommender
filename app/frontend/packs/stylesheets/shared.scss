@@ -7,14 +7,7 @@
    transform: translateY(-50%);
 }
 
-.panel {
-   width: 100%;
-   display: block;
-   padding: 30px 0;
-   height:inherit;
-}
-
-.page_wrapper {
+.search_page_wrapper {
    width: 100%;
    display: flex;
    justify-content: space-between;
@@ -24,6 +17,7 @@
 .my-carousel {
    margin-left: 0;
 }
+
 .nextArrowBtn{
    position: absolute;
    z-index: 1000;
@@ -73,10 +67,15 @@
 .bg-primary {
    background-color: #c4c4c4 !important;
 }
+.search_card>.card-img-top {
+   -webkit-clip-path: inset(10% 0 20% 0);
+   height: 30rem;
+   max-width: 100%;
+ }
 .card-img-top {
    -webkit-clip-path: inset(10% 0 20% 0);
-    //height:calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5); 
-    //max-width: calc(((100vw - 80px - 260px - 64px) / 2));;
+   height: 30vh;
+   width: auto;
  }
  .card-title {
     font-size: 2em;
