@@ -6,9 +6,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'stylesheets' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render  "shared/sidebar" %>
   </head>
 
-  <body>
+  <body id="main">
+    
     <%= yield %>
   </body>
 </html>

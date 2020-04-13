@@ -1,42 +1,117 @@
 // Place all the styles related to the SeriesLists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.noImage {
+   position: relative;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.search_page_wrapper {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
 
 
+.my-carousel {
+   margin-left: 0;
+}
 
+.slick-slide {
+   margin:0;
+}
 
+.nextArrowBtn{
+   position: absolute;
+   z-index: 1000;
+   top: 30%;
+   right: 0;
+   color: #BFAFB2;
+   font-size: 4rem;
+}
+.prevArrowBtn{
+   position: absolute;
+   z-index: 1000;
+   top: 30%;
+   left: 0;
+   color: #BFAFB2;
+   font-size: 4rem;
+}
+.search_card {
+   margin-left: 30px;
+   position: relative;
+   top: 0;
+   left: 0;
+   display: flex;
+   flex-basis: 21%;
+   align-content: flex-start;
+   border: 1px solid #e3e3e3;
+   border-radius: var(--imageBorderRadius);
+   overflow: hidden;
+   margin-top: 30px;
+   background: #c4c4c4;
+   //width: calc(((100vw - 260px - 80px - 64px) / 2));
+   //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
+}
+
+.carousel_card {
+   margin-left: 30px;
+   position: relative;
+   top: 0;
+   left: 0;
+   border: 1px solid #e3e3e3;
+   border-radius: var(--imageBorderRadius);
+   overflow: hidden;
+   background: #c4c4c4;
+   background-color: black;
+   max-height: 30vh;
+   //width: calc(((100vw - 260px - 80px - 64px) / 2));
+   //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
+}
+.bg-primary {
+   background-color: black !important;
+}
+.search_card>.card-img-top {
+   -webkit-clip-path: inset(10% 0 20% 0);
+   height: 30rem;
+   max-width: 100%;
+ }
 .card-img-top {
-    -webkit-clip-path: inset(10% 0 20% 0);
-    height: 30rem;
-    max-width: 100%;
+   height: 30vh;
+   width: auto;
  }
  .card-title {
-    font-weight: 600;
+    font-size: 2em;
+    font-weight: 700;
     color: #414345;
-    min-height: 7.5rem;
+    min-height: 1px;
     color: white !important;
     text-shadow: 2px 2px black;
+    width:inherit;
  }
  
  .card-body {
     color: white !important;
  }
  
+    
  .card-text {
     color:white;
-    margin-top: 8px;
-    font-weight: 600;
-    line-height: 30px;
-    min-height: 6rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    font-weight: 5rem;
     text-shadow: 1px 1px black;
-    font-size:1.2rem;
- 
+    font-size:1.2em;
+    width: 90%;
+   // line-height: 1rem;
+   // min-height: 6rem;
  }
+ 
+
  .card, .trailer-preview {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     &:hover {
@@ -45,12 +120,9 @@
  }
  
  .card {
-    border-radius: 8pt;
-    border-style: none;
-    overflow: hidden;
-    transform: scale(0.8);
-    margin: 0;
-    border: 0;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border: 1px solid rgba(var(--lightGrey), 1);
+   background-color: #fff;
  }
  .card-img-overlay {
      bottom: 0px;
@@ -58,14 +130,17 @@
  }
   .inner {
     display:none;
+    width: 90%;
+    
   }
  .metadata {
     background: none;
     padding: 0;
     position: relative;
     border-style: none;	
-    font-size: 16px;
-    color:white;
+    font-size: 1rem;
+    color:white;    
+    text-shadow: 1px 1px black;
     i, p {
        float: left;
     }
@@ -79,15 +154,7 @@
        margin-left: 1px;
     }
  }
- 
- .giveMeEllipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* number of lines to show */
- }
- 
+
  .fa-thumbs-up, .fa-thumbs-down {
     color:rgb(77, 70, 70);
     font-size: 3rem;
@@ -102,4 +169,110 @@
  }
  #thumbs {
     text-align: center;
+ }
+
+ .sidebar {
+   height: 100%;
+   width: 85px;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   left: 0;
+   background-color: #111;
+   transition: 0.5s;
+   overflow-x: hidden;
+   padding-top: 60px;
+   white-space: nowrap;
+ }
+ 
+ .sidebar a {
+   padding: 8px 8px 8px 32px;
+   text-decoration: none;
+   font-size: 25px;
+   color:  #00B4CC;
+   display: block;
+ }
+ 
+ .sidebar a:hover {
+   color: #f1f1f1;
+ }
+ 
+
+ 
+ @media screen and (max-height: 450px) {
+   .sidebar {
+     padding-top: 15px;
+   }
+   .sidebar a {
+     font-size: 18px;
+   }
+ }
+
+ #search-container button {
+   font-size: 17px;
+   border: none;
+   cursor: pointer;
+   float: none;
+   text-align: left;
+   background-color: transparent;
+   padding-left: 0;
+ }
+
+ #search-container{
+   padding-left: 0.5em;
+}
+
+#wholebar {
+   display: none;
+}
+#smallbar {
+   color:white;
+
+}
+
+.icons {
+   padding: 0.8rem 2rem;
+   text-decoration: none;
+   font-size: 25px;
+   color:  #00B4CC;
+   display: block;
+}
+
+.search {
+   width: 100%;
+   position: relative;
+   display: flex;
+ }
+ 
+ .searchTerm {
+   width: 100%;
+   border: 3px solid #00B4CC;
+   border-right: none;
+   padding: 5px;
+   height: 3rem;
+   border-radius: 5px 0 0 5px;
+   outline: none;
+   color: black;
+ }
+ 
+ .searchTerm:focus{
+   color: #00B4CC;
+ }
+ 
+ .searchButton {
+   width: 40px;
+   height: 3rem;
+   border: 1px solid #00B4CC;
+   background: #00B4CC;
+   text-align: center;
+   color: #fff;
+   border-radius: 0 5px 5px 0;
+   cursor: pointer;
+   font-size: 20px;
+ }
+ 
+ /*Resize the wrap to see the search bar change!*/
+ .wrap{
+   width: 100%;
+   position: absolute;
  }

@@ -1,0 +1,20 @@
+<%= stylesheet_pack_tag 'stylesheets/shared' %>
+<div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+    <div id="wholebar">
+        <a href="#">Popular</a><br>
+        <a href="#">My Searches</a><br>
+        <div class="wrap">
+            <form action="/searches" class="search" method="post">
+                <input type="text" class="searchTerm" type="search" placeholder="Game of Thrones" id ='query' name="query">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="smallbar">
+        <i class="fas fa-tv fa-3x icons"></i><br>
+        <i class="fas fa-star fa-3x icons"></i><br>
+        <i class="fas fa-search fa-3x icons"></i><br>
+    </div>
+</div>

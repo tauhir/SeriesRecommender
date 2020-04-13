@@ -1,8 +1,10 @@
-<%= render  "layouts/searchbar" %>
-<div class="row no-gutters" id="search">
-    <%= render "shared/tiles", locals: { series_list: @search.get_series } %>
+<div class="SearchContainer" id="search">
+    <div class="content">
+        <%= render "shared/tiles", locals: { series_list: @search.get_series } %>
+    </div>
 </div>
-<hr>
-<div class="row no-gutters" id="show">
-    <%= render "shared/tiles", locals: { series_list: @search.get_series } %>
+<div class="RecommendsContainer" id="show">
+    <div class="content2">
+        <%= render "shared/recommended_tiles", locals: { series_list: @search.get_series } %>
+    </div>
 </div>

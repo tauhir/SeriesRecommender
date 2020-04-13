@@ -12,12 +12,31 @@ window.jQuery = window.$ = require('jquery')
 import 'bootstrap/dist/js/bootstrap';
 import 'packs/stylesheets.scss'
 import FooImage from 'packs/images/image.png'
+import 'slick-carousel/slick/slick';
 
 //console.log("Hello from hello.js");
+$(document).ready(function(){
+	$('.my-carousel').slick({
+		slidesToShow: 10, //this fixes my problem with borders for now
+		infinite: true,
+		arrows: true,
+		adaptiveHeight: true,
+		nextArrow: '<i class="fas fa-chevron-right nextArrowBtn"></i>',
+		prevArrow: '<i class="fas fa-chevron-left prevArrowBtn"></i>',	  
+		responsive: [{
+		  breakpoint: 500,
+		  settings: {
+			slidesToShow: 3,
+		  }
+		}]
+	  });
+  });
+
 
 function noImage(element) {
   //console.log("Hello from func");
   element.src=FooImage;
+  element.classList.add('noImage');
 }
 
 /*
@@ -53,7 +72,6 @@ function InfoToggle(element, showState) {
 
 */	
 const url ='http://'+ window.location.host + '/searches/opinion'
-
 function showrating(seriesId, state,searchId,object) {
 	console.log(seriesId, state,searchId);
 	fetch(url, {
@@ -105,12 +123,33 @@ function json(response) {
 	console.log(response);
 	return response.json()
   }
+
+
+var small = true;
+function toggleSidebar() {
+if (small) {
+	console.log("opening sidebar");
+	document.getElementById("mySidebar").style.width = "250px";
+	document.getElementById("main").style.marginLeft = "250px";
+	document.getElementById("wholebar").style.display = "inline-block";
+	document.getElementById("smallbar").style.display = "none";
+	small = false;
+} else {
+	console.log("closing sidebar");
+	document.getElementById("mySidebar").style.width = "85px";
+	document.getElementById("main").style.marginLeft = "85px";
+	document.getElementById("wholebar").style.display = "none";
+	document.getElementById("smallbar").style.display = "inline-block";
+	small = true;
+}
+}
   
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr
 window.noImage = noImage;
 window.InfoToggle = InfoToggle;
 window.showrating = showrating;
+window.toggleSidebar = toggleSidebar;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

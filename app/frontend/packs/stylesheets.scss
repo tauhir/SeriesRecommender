@@ -2,3 +2,48 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+$slick-font-path: "~slick-carousel/slick/fonts/";
+$slick-loader-path: "~slick-carousel/slick/";
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
+
+.SearchContainer {
+    height: 70vh;
+    width:100%;
+    background:black;
+}
+
+.RecommendsContainer {
+    height: 50%;
+    width:100%;
+    border: black;
+    background:black;
+}
+
+.content {
+    height: inherit;
+    overflow:auto; 
+
+}
+
+.content2 {
+    height: inherit;
+
+}
+
+main .sidebar {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  
+  #main {
+    margin-left: 85px;
+    transition: margin-left 0.5s;
+    width:inherit;
+    max-height: 100vh;
+    overflow: hidden;
+  }
