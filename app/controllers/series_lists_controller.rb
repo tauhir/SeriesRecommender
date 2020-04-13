@@ -8,6 +8,10 @@ class SeriesListsController < ApplicationController
     @series_lists = SeriesList.all
   end
 
+  def popular
+    @series_list = SeriesList.find_by(search_id: 1).last
+  end
+
   # GET /series_lists/1
   # GET /series_lists/1.json
   def show

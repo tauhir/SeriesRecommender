@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :searches
   #resources :series_lists
   get '/series_lists/:id', to: 'series_lists#show', as: 'series_list'
+  root to: 'series_lists#popular'
   get 'home/new'
   get 'home/index'
   post '/searches/opinion', to: 'searches#opinion', as: 'opinion'
