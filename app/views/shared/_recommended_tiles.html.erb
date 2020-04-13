@@ -5,7 +5,7 @@
 		<% (series_list.get_list).first(10).each do |id| %>
 		<% series = series_list.get_series(id) %>
 		<div class="card carousel_card rounded" id= "<%=id%>_tile" onmouseover="InfoToggle(this,true)" onmouseout="InfoToggle(this,false)">
-			<img class="card-img-top" loading="lazy" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
+			<img class="card-img-top" data-lazy="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
 			<div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
 					<div class="inner">
 						<h1 class="card-title"><%= series['name']%></h1>
