@@ -17,7 +17,7 @@ import 'slick-carousel/slick/slick';
 //console.log("Hello from hello.js");
 $(document).ready(function(){
 	$('.my-carousel').slick({
-		slidesToShow: 8,
+		slidesToShow: 10, //this fixes my problem with borders for now
 		infinite: true,
 		arrows: true,
 		adaptiveHeight: true,
