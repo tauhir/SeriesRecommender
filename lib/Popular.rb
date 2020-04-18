@@ -5,7 +5,7 @@ class Popular
 	BASE = 'https://api.themoviedb.org/3/tv/popular'
 
 	def get_popular(page)
-		query_hash = {'page': page}
+		query_hash = {'page': page, "original_language": "en"}
 		api_response = Request.get_json(BASE,query_hash)
 		api_results = results = api_response[0]["results"] # we could get total results and pages here if we wanted
 		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
@@ -14,9 +14,9 @@ class Popular
     
     def get_10_popular_pages()
         results = []
-        for i in 0..10
+        for i in 1..10
             page = get_popular(i)
-            for i in 0..page.size
+            for i in 0..(page.size-1)
                 results.append(page[i]["id"])
             end
         end

@@ -9,7 +9,7 @@ class SeriesListsController < ApplicationController
   end
 
   def popular
-    @series_list = SeriesList.find_by(search_id: 1).last
+    @series_list = SeriesList.find_by(search_id: 1)
   end
 
   # GET /series_lists/1
