@@ -14,16 +14,22 @@ $slick-loader-path: "~slick-carousel/slick/";
 }
 
 .RecommendsContainer {
-    height: 50%;
+    height: 50%; // @todo why is this a percentage but it works 
     width:100%;
     border: black;
     background:black;
 }
 
+.Container {
+    height: 100vh;
+    width:100%;
+    border: black;
+    background:black;    
+    overflow:auto; 
+}
 .content {
     height: inherit;
     overflow:auto; 
-
 }
 
 .content2 {

@@ -36,7 +36,7 @@ class SearchesController < ApplicationController
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
-      redirect_to series_list_path(@search.id)
+      redirect_to @search
     else
       raise Exception.new("no series series")
     end
