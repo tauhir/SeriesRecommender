@@ -24,6 +24,18 @@ class Search < ApplicationRecord
 		self.save
 	end
 
+	def get_recommended
+		# @todo, not sure yet tbh. Need to build a recommended list from
+	end
+
+	def get_liked
+		SeriesList.where(search_type: true).find_by(search_id: self.id)
+	end
+
+	def get_disliked
+		SeriesList.where(search_type: false).find_by(search_id: self.id)
+	end
+	
  	private
 
  	# takes query parameter and calls API to do search. Creates SeriesList object
