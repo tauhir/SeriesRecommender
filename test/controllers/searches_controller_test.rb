@@ -68,4 +68,18 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
     @series_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
     assert @series_list.try(:external_series), ["0003","0004"]
   end
+
+  test 'get liked series_list' do
+    @search = Search.create({'current_query':'How I'})
+    post opinion_url, params: { "seriesId": '0001', "liked": true, "searchId": @search.id }
+    liked_list = SeriesList.where(search_type: true).find_by(search_id: @search.id)
+    assert( @search.get_liked == liked_list, "liked list doesn't match" )
+  end
+
+  test 'get disliked series_list' do #not sure if we need this method
+    @search = Search.create({'current_query':'How I'})
+    post opinion_url, params: { "seriesId": '0001', "liked": false, "searchId": @search.id }
+    liked_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
+    assert( @search.get_liked == liked_list, "liked list doesn't match" )
+  end
 end
