@@ -5,33 +5,33 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
     @search = searches(:one)
   end
 
-  test "should get index" do
-    get searches_url
-    assert_response :success
-  end
+  # test "should get index" do
+  #   get searches_url
+  #   assert_response :success
+  # end
 
-  test "should get new" do
-    get new_search_url
-    assert_response :success
-  end
+  # test "should get new" do
+  #   get new_search_url
+  #   assert_response :success
+  # end
 
-  test "should create search" do
-    assert_difference('Search.count') do
-      post searches_url, params: { search: {  } }
-    end
+  # test "should create search" do
+  #   assert_difference('Search.count') do
+  #     post searches_url, params: { search: {  } }
+  #   end
 
-    assert_redirected_to search_url(Search.last)
-  end
+  #   assert_redirected_to search_url(Search.last)
+  # end
 
-  test "should show search" do
-    get search_url(@search)
-    assert_response :success
-  end
+  # test "should show search" do
+  #   get search_url(@search)
+  #   assert_response :success
+  # end
 
-  test "should get edit" do
-    get edit_search_url(@search)
-    assert_response :success
-  end
+  # test "should get edit" do
+  #   get edit_search_url(@search)
+  #   assert_response :success
+  # end
 
   test "should update search" do
     list = @search.query_list
@@ -79,7 +79,7 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   test 'get disliked series_list' do #not sure if we need this method
     @search = Search.create({'current_query':'How I'})
     post opinion_url, params: { "seriesId": '0001', "liked": false, "searchId": @search.id }
-    liked_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
-    assert( @search.get_liked == liked_list, "liked list doesn't match" )
+    disliked_list = SeriesList.where(search_type: false).find_by(search_id: @search.id)
+    assert( @search.get_disliked == disliked_list, "disliked list doesn't match" )
   end
 end
