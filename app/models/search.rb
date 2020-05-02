@@ -30,11 +30,24 @@ class Search < ApplicationRecord
 		# liked lists. Should get all recommended for each liked and then list by most occured
 		# there's a bunch of arbitary things I can think of to best recommend like:
 		# genre, origin country, age, actors. I'll need to look into this @
-		liked = self.get_liked
 		# now do a loop getting all series that are recommended
-		# remove disliked occurences
-		# next order them by most commonly occured and let user add to like, then we can run this again
+		liked = self.get_liked.get_list
+		recommends = []
+		liked.each do |series|
+			recommends.append( get_recommended_series(series) )
+		end
+		# next order them by most commonly occured and let user add to like, then we can run this again 
+		# it makes sense to do the following
+		# make array of all series to iterate through and remove duplicates
+		# remove disliked occurences from iterating array @todo allow them to include disliked 
 
+		# get size of each shows recommends and for each show:
+		# determine the position and do pos/total
+		# do 1 - (pos1/total1 + pos2/total2 + pos3/total3 ...)/total lists to get liked percentage 
+		# in above, if value not in list use 1.1 as its worse than being last (arb number lol)
+		# highest to lowest of the results will be recommendations. If negative, lets remove
+
+		
 	end
 
 	def get_liked
@@ -77,8 +90,20 @@ class Search < ApplicationRecord
 
 		# actual get series
 		def get_recommended_series(seriesId)
-			url = SIMILAR_BASE + "/#{seriesId}/similar"
-			api_response = Request.get_json(SIMILAR_BASE,nil) # @todo update get_json to variable params
+			url = SIMILAR_BASE + "#{seriesId}/similar"
+			results = []
+			(1..4).each do |page| # @todo currently gets first 3 pages but we're presuming there are 3
+
+				query_hash = {'page': page}
+				api_response = Request.get_json(url,query_hash) # @todo update get_json to variable params
+				raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
+				api_results = api_response[0]["results"]
+				result_ids = []
+				api_results.each do |result|
+					results.append(result["id"])
+				end
+			end
+			results
 		end
 
 end

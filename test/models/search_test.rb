@@ -22,8 +22,8 @@ class SearchTest < ActiveSupport::TestCase
   test 'getrecommended' do
 	# issue with this is that I can't presume the outcome and compare because of new tv shows so we'll test if it works
 	search = Search.create({'current_query':'How I'})
-	serieslist = search.get_series
-	search.create_series_list(serieslist.getlist[0],search_id: search.id, search_type: true)
+	serieslist = search.get_series.get_list
+	search.create_series_list(serieslist[0,3], search_type: true)
 	search.get_recommended
   end
 end
