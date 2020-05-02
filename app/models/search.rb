@@ -6,7 +6,8 @@ class Search < ApplicationRecord
 	# attr_accessor :query, :results, :pages
 	attr_accessor :external_series
 	has_many :SeriesList
-	BASE = 'https://api.themoviedb.org/3/search/tv'
+	SEARCH_BASE = 'https://api.themoviedb.org/3/search/tv'
+	SIMILAR_BASE = 'https://api.themoviedb.org/3/tv/'
 	before_save :complete_search
 	after_save :post_search
 
@@ -26,6 +27,14 @@ class Search < ApplicationRecord
 
 	def get_recommended
 		# @todo, not sure yet tbh. Need to build a recommended list from
+		# liked lists. Should get all recommended for each liked and then list by most occured
+		# there's a bunch of arbitary things I can think of to best recommend like:
+		# genre, origin country, age, actors. I'll need to look into this @
+		liked = self.get_liked
+		# now do a loop getting all series that are recommended
+		# remove disliked occurences
+		# next order them by most commonly occured and let user add to like, then we can run this again
+
 	end
 
 	def get_liked
@@ -45,7 +54,7 @@ class Search < ApplicationRecord
 			# puts query
 			# creating the hash here for now. Might make additional param to Request.rb if not DRY
 			query_hash = {'query': self.current_query}
-			api_response = Request.get_json(BASE,query_hash)
+			api_response = Request.get_json(SEARCH_BASE,query_hash)
 			@api_results = api_response[0]
 			raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
 			self.results = @api_results["total_results"] 
@@ -64,6 +73,12 @@ class Search < ApplicationRecord
 				puts "wow"
 				# @todo no results
 			end
+		end
+
+		# actual get series
+		def get_recommended_series(seriesId)
+			url = SIMILAR_BASE + "/#{seriesId}/similar"
+			api_response = Request.get_json(SIMILAR_BASE,nil) # @todo update get_json to variable params
 		end
 
 end
