@@ -26,28 +26,53 @@ class Search < ApplicationRecord
 	end
 
 	def get_recommended
-		# @todo, not sure yet tbh. Need to build a recommended list from
-		# liked lists. Should get all recommended for each liked and then list by most occured
-		# there's a bunch of arbitary things I can think of to best recommend like:
-		# genre, origin country, age, actors. I'll need to look into this @
-		# now do a loop getting all series that are recommended
+		# Should get all recommended for each liked and then list by most occured. 
+		# For now we're not taking into account the following:
+		# genre, origin country, age, actors.
+
+		# The general idea here is the following:
+		# 	have two arrays, one to iterate through and one 2d array with each recommends list
+		# 	From the iterating array, we need to remove the duplicates and disliked shows
+		# 	We can then iterate through the array and look for a show in the 2d array
+		# 	wherever we find a 2d array we can determine the position of the total like
+		# 	We can add this up for each list and divide by the total to get the recommended (1 - result because lowest is higher here) like below:
+		# 		 1 - (pos1/total1 + pos2/total2 + pos3/total3 ...)/total lists to get liked percentage 
+		# 		in above, if value is not in a list use 1.1 as its worse than being last (arb number lol ) @todo get better way then 1.1
+		# 	The results can be made into a hash or something and will determine order
+		# 	This will update whenever a user likes/dislikes something
+
 		liked = self.get_liked.get_list
-		recommends = []
+		disliked = self.get_disliked.get_list
+		recommends = []		#going to be the 2d array
+		
 		liked.each do |series|
+
 			recommends.append( get_recommended_series(series) )
 		end
-		# next order them by most commonly occured and let user add to like, then we can run this again 
-		# it makes sense to do the following
-		# make array of all series to iterate through and remove duplicates
-		# remove disliked occurences from iterating array @todo allow them to include disliked 
-
-		# get size of each shows recommends and for each show:
-		# determine the position and do pos/total
-		# do 1 - (pos1/total1 + pos2/total2 + pos3/total3 ...)/total lists to get liked percentage 
-		# in above, if value not in list use 1.1 as its worse than being last (arb number lol)
-		# highest to lowest of the results will be recommendations. If negative, lets remove
-
-		
+		iterating_array = recommends.flatten # to make a single array to iterate through
+		iterating_array = iterating_array.uniq # remove duplicates
+		iterating_array = iterating_array.map { |val| val if disliked.exclude? (val)} 
+		recommends_results = {}
+		iterating_array.each do |series|
+			# for each series, we want to iterate through all the lists and find the total
+			value = 0
+			(0..recommends.size).each do |index|
+				# check for position in list
+				if recommends[index]	
+					pos = recommends[index].index(series) # returns nil if not in array
+					size = recommends[index].size.to_f # forcing float division for required float in value ternary statement below
+					# puts "pos: " + pos.to_s
+					# puts "size: " + size.to_s
+					value += pos ? pos/size : 1.1 # pos evaluates to true if its a number
+					# puts "val: " + value.to_s
+				end
+			end
+			percentage = (1 - value/recommends.size)*100 # anything less than zero should be excluded
+			recommends_results[series] =( percentage > 0 ? percentage : nil )
+		end
+		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h # removes all keys with nil values, then sorts by descending values - best show first
+		puts recommends_results
+		# after completetion let user add to like, then we can run this again as they change their likes
 	end
 
 	def get_liked

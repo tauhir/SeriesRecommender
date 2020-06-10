@@ -23,7 +23,8 @@ class SearchTest < ActiveSupport::TestCase
 	# issue with this is that I can't presume the outcome and compare because of new tv shows so we'll test if it works
 	search = Search.create({'current_query':'How I'})
 	serieslist = search.get_series.get_list
-	search.create_series_list(serieslist[0,3], search_type: true)
+	search.create_series_list([1668,1100,4556,2691], search_type: true)
+	search.create_series_list(serieslist[4,6], search_type: false)
 	search.get_recommended
   end
 end
