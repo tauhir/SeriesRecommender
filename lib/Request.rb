@@ -32,7 +32,7 @@ class Request
           query.each {|k,v| req.params[k] = v }
         end
       else
-        response = api.get(query_path)
+        response = api.get(query_path+query) # quickfix, for some reason this wasnt working. 
       end
       [JSON.parse(response.body), response.status]
     end

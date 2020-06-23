@@ -9,13 +9,14 @@ Things you may want to cover:
 
 * System dependencies
 Install:
-rvm, bundler, psql, pg-admin libpq-dev build-essential
-gem install bundler, ruby-foreman
-bundle install
-https://classic.yarnpkg.com/en/docs/install#debian-stable -yarn 
-yarn install cmd
+install as per setup.sh
+Rename '.envsample' to .env and add tmdb api key (https://github.com/bkeepers/dotenv)
+
 
 * To Run
+sudo -u postgres createuser --superuser <user> (creating role with my username here)
+sudo pg_ctlcluster 10 main start - for some reason I have to do this on WSL 2.
+rails db:migrate
 foreman start
 
 
@@ -24,8 +25,8 @@ https://github.com/bkeepers/dotenv =env file
 * Database creation
 
 * Database initialization
-sudo pg_ctlcluster 10 main start - for some reason I have to do this on WSL 2.
-
+sudo -u postgres createuser --superuser tauhir (username here)
+rails db:migrate
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
