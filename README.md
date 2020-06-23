@@ -29,3 +29,21 @@ To Run
 > rails db:migrate
 * Start the application:
 > foreman start
+
+TODO:
+Application Needs:
+* Fix arrangement of show tiles, if theres less than the table width amount, the code puts on the far left and far right, rather than carrying on
+* Build My Searches section
+* Hide RecommendedList on first search - currently the search results are displayed
+* Searching after an initial search, starts a new search
+
+From code:
+/home/tauhir/SeriesRecommender/app/models/search.rb
+  line 5    TODO  need to update this to be able to search next page and add to list. might need to add current page attrib?
+  line 19   TODO  can probably remove search_id param then use self.id
+  line 112  TODO  no results
+
+/home/tauhir/SeriesRecommender/app/frontend/packs/application.js
+  line 133  TODO  check to see if no search options left and let user know
+  line 163  TODO  , why is window constantly needed? See this as starting point
+  
