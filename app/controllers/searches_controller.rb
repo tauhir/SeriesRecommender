@@ -36,7 +36,8 @@ class SearchesController < ApplicationController
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
-      redirect_to @search
+      session["search_id"] = @search.id
+      render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
     end
@@ -45,15 +46,11 @@ class SearchesController < ApplicationController
   # PATCH/PUT /searches/1
   # PATCH/PUT /searches/1.json
   def update
-    respond_to do |format|
-      
-      if @search.update(:current_query => params[:query])
-        format.html { redirect_to @search, notice: 'Search was successfully updated.' }
-        format.json { render :show, status: :ok, location: @search }
-      else
-        format.html { render :edit }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
+    if @search
+      @search.new_query({:current_query => params[:query]})
+      render json: {search_id: @search.id}, status: :ok
+    else
+      render json: {}, status: :bad
     end
   end
 
@@ -67,6 +64,14 @@ class SearchesController < ApplicationController
     end
   end
   
+  def has_session
+    state = false
+    id = nil
+    if session["search_id"]
+      state = true
+    end
+    render json: {session_status: state, id: session["search_id"]}, status: :ok
+  end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
   # this call also determine whether to post to show action or respond to
