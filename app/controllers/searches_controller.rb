@@ -36,7 +36,8 @@ class SearchesController < ApplicationController
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
-      session["search_id"] = @search.id
+      # session[:search_id] = @search.id
+      cookies[:search_id] = @search.id
       render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
@@ -67,10 +68,10 @@ class SearchesController < ApplicationController
   def has_session
     state = false
     id = nil
-    if session["search_id"]
+    if cookies[:search_id]
       state = true
     end
-    render json: {session_status: state, id: session["search_id"]}, status: :ok
+    render json: {session_status: state, id: cookies[:search_id]}, status: :ok
   end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
