@@ -176,9 +176,9 @@ function hasSession() {
 			response.json().then(function(data) {
 			console.log(data);
 			search_id = data['id'];
-			debugger;
 			if (data['session_status']) {
 				// id exists, prompt user to update to start new search or update
+				debugger;
 				$('#searchModal').modal("toggle")
 			} 
 			else {
@@ -195,7 +195,6 @@ function hasSession() {
 
 	
 	function SessionButtonpress(response) {
-		// just a note for me for tomorrow. You broke the method above. The catch part is wrong. Remove it all and start from scratch like a good boy :) 
 		var createUpdateUrl ='http://'+ window.location.host
 		var query_method = 'post'
 		if (response == true) {
@@ -203,9 +202,10 @@ function hasSession() {
 			createUpdateUrl += '/searches/'
 		}
 		else {
+			console.log('here00');
 			createUpdateUrl += '/searches/'+ search_id
-			query_method = 'patch'
-		}
+			query_method = 'put'
+		}		
 		fetch(createUpdateUrl, {
 			headers: {"Content-type": "application/json; charset=UTF-8" },
 			method: query_method,

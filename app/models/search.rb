@@ -12,7 +12,7 @@ class Search < ApplicationRecord
 	after_save :post_search
 
 	def get_series # maybe just the i
-		SeriesList.where(search_id: self.id).first
+		SeriesList.where(search_id: self.id).last
 	end
 	
 	def create_series_list(ext_series, language:"en_US",search_id: self.id, search_type: nil)
@@ -21,7 +21,7 @@ class Search < ApplicationRecord
 	end
 
 	def new_query(query)
-		self.current_query = query
+		self.current_query = query[:current_query]
 		self.save
 	end
 
@@ -109,6 +109,7 @@ class Search < ApplicationRecord
 				create_series_list(series_ids)
 			else
 				puts "wow"
+				raise Exception.new("no search results found")
 				# @todo no results
 			end
 		end
