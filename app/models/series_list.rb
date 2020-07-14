@@ -25,4 +25,9 @@ class SeriesList < ApplicationRecord
 		end
 		str.join(', ')
 	end
+
+	def append(series_to_add)
+		self.external_series.append(series_to_add)
+		self.save
+	end
 end

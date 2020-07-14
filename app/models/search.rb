@@ -40,9 +40,10 @@ class Search < ApplicationRecord
 		# 		in above, if value is not in a list use 1.1 as its worse than being last (arb number lol ) @todo get better way then 1.1
 		# 	The results can be made into a hash or something and will determine order
 		# 	This will update whenever a user likes/dislikes something
-
+		return nil if !self.get_liked #should display a section telling users to start liking to get started
 		liked = self.get_liked.get_list
 		disliked = self.get_disliked.get_list
+		
 		recommends = []		#going to be the 2d array
 		
 		liked.each do |series|

@@ -78,12 +78,12 @@ class SearchesController < ApplicationController
   # this call also determine whether to post to show action or respond to
   def opinion
     @search = Search.find_by_id(params["searchId"])
-    seriesId = [params["seriesId"]]
-    params["liked"].eql?("true") ? type = true : type = false #ruby changes boolean to string somehow, probably due to params?
-    series = SeriesList.find_by(id: @search.id).try(:where, search_type: type) # shouldn't need first because there should only be one
+    seriesId = params["seriesId"]
+    params["liked"].eql?(true) ? type = true : type = false #ruby changes boolean to string somehow, probably due to params? 2020-7-14 - THIS IS NOT A STRING ANYMORE
+    series = SeriesList.find_by(search_id: 63, search_type: true)
     if series 
       #append to series
-      series.external_series.append(seriesId)
+      series.append(seriesId)
     else
       #create series list
       series = @search.create_series_list(seriesId, search_type: type)
