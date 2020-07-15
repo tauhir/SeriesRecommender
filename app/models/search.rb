@@ -71,8 +71,7 @@ class Search < ApplicationRecord
 			percentage = (1 - value/recommends.size)*100 # anything less than zero should be excluded
 			recommends_results[series] =( percentage > 0 ? percentage : nil )
 		end
-		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h # removes all keys with nil values, then sorts by descending values - best show first
-		puts recommends_results
+		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h # removes all keys with nil values, then sorts by descending values - best show first 
 		# after completetion let user add to like, then we can run this again as they change their likes
 	end
 
