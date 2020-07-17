@@ -31,11 +31,11 @@ To Run
 > foreman start
 
 TODO:
-Application Needs:
-* Fix arrangement of show tiles, if theres less than the table width amount, the code puts on the far left and far right, rather than carrying on
+Application Needs (in order of importance):
+* Time delay in sessions
+* Fix show tiles: arrangement, display for both searches and recommends
 * Build My Searches section
-* Hide RecommendedList on first search - currently the search results are displayed
-* Searching after an initial search, starts a new search
+* Login Functionality 
 
 From code:
 /home/tauhir/SeriesRecommender/app/models/search.rb
