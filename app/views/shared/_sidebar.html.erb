@@ -4,7 +4,7 @@
         <a href="/">Popular</a><br>
         <a href="#">My Searches</a><br>
         <div class="wrap">
-            <form action="/searches" class="search" method="post">
+            <form action="javascript:hasSession()" class="search">
                 <input type="text" class="searchTerm" type="search" placeholder="Game of Thrones" id ='query' name="query">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
@@ -17,4 +17,24 @@
         <i class="fas fa-star fa-3x icons"></i><br>
         <i class="fas fa-search fa-3x icons"></i><br>
     </div>
+</div>
+
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Would you like to start a new search?
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="continueSearchButton" class="btn btn-secondary" data-dismiss="modal" onclick="SessionButtonpress(false)">No</button>
+        <button type="button" id="newSearchButton" class="btn btn-primary" data-dismiss="modal" onclick="SessionButtonpress(true)">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>

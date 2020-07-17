@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_170352) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "search_id", null: false
-    t.boolean "search_type"
+    t.integer "list_type"
     t.index ["search_id"], name: "index_series_lists_on_search_id"
   end
 

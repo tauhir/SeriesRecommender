@@ -14,7 +14,7 @@ class SearchTest < ActiveSupport::TestCase
   test 'add to query_list' do
 	search = Search.create({'current_query':'How I'})
 	assert search.query_list == ['How I']
-	search.new_query('friends')
+	search.new_query({'current_query': 'friends'})
 	
 	assert( search.query_list == ['How I', 'friends'], "Did not append new query: #{search.query_list}")
   end
@@ -23,8 +23,9 @@ class SearchTest < ActiveSupport::TestCase
 	# issue with this is that I can't presume the outcome and compare because of new tv shows so we'll test if it works
 	search = Search.create({'current_query':'How I'})
 	serieslist = search.get_series.get_list
-	search.create_series_list([1668,1100,4556,2691], search_type: true)
-	search.create_series_list(serieslist[4,6], search_type: false)
+	search.create_series_list([1668,1100,4556,2691], list_type: "liked")
+	search.create_series_list(serieslist[4,6], list_type: "disliked")
 	search.get_recommended
   end
 end
+ 

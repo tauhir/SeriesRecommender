@@ -1,8 +1,10 @@
 require 'Request'
 require 'ApiConnection'
 class SeriesList < ApplicationRecord
+	enum list_type: [:liked, :disliked, :search, :recommended]
 	#should have a method here to return series info for each series in external_series object
 	BASE = 'https://api.themoviedb.org/3/tv/'
+	
 
 	def get_series(id)
 		
@@ -24,5 +26,10 @@ class SeriesList < ApplicationRecord
 			str.append(genre['name'])
 		end
 		str.join(', ')
+	end
+
+	def append(series_to_add)
+		self.external_series.append(series_to_add)
+		self.save
 	end
 end

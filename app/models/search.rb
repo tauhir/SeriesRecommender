@@ -12,16 +12,17 @@ class Search < ApplicationRecord
 	after_save :post_search
 
 	def get_series # maybe just the i
-		SeriesList.where(search_id: self.id).first
+		SeriesList.where(search_id: self.id, list_type: "search").last
 	end
 	
-	def create_series_list(ext_series, language:"en_US",search_id: self.id, search_type: nil)
+	def create_series_list(ext_series, language:"en_US",search_id: self.id, list_type: "search")
 		# @todo can probably remove search_id param then use self.id
-		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id, :search_type => search_type)
+		ext_series = [ext_series] if !ext_series.kind_of?(Array)
+		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id, :list_type => list_type)
 	end
 
 	def new_query(query)
-		self.current_query = query
+		self.current_query = query[:current_query]
 		self.save
 	end
 
@@ -40,9 +41,10 @@ class Search < ApplicationRecord
 		# 		in above, if value is not in a list use 1.1 as its worse than being last (arb number lol ) @todo get better way then 1.1
 		# 	The results can be made into a hash or something and will determine order
 		# 	This will update whenever a user likes/dislikes something
-
+		return nil if !self.get_liked #should display a section telling users to start liking to get started
 		liked = self.get_liked.get_list
-		disliked = self.get_disliked.get_list
+		disliked = self.get_disliked.get_list if get_disliked != nil
+		
 		recommends = []		#going to be the 2d array
 		
 		liked.each do |series|
@@ -51,7 +53,7 @@ class Search < ApplicationRecord
 		end
 		iterating_array = recommends.flatten # to make a single array to iterate through
 		iterating_array = iterating_array.uniq # remove duplicates
-		iterating_array = iterating_array.map { |val| val if disliked.exclude? (val)} 
+		iterating_array = iterating_array.map { |val| val if disliked.exclude? (val) } if disliked
 		recommends_results = {}
 		iterating_array.each do |series|
 			# for each series, we want to iterate through all the lists and find the total
@@ -70,17 +72,17 @@ class Search < ApplicationRecord
 			percentage = (1 - value/recommends.size)*100 # anything less than zero should be excluded
 			recommends_results[series] =( percentage > 0 ? percentage : nil )
 		end
-		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h # removes all keys with nil values, then sorts by descending values - best show first
-		puts recommends_results
+		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h # removes all keys with nil values, then sorts by descending values - best show first 
+		create_series_list(recommends_results.keys, list_type: 'recommended')
 		# after completetion let user add to like, then we can run this again as they change their likes
 	end
 
 	def get_liked
-		SeriesList.where(search_type: true).find_by(search_id: self.id)
+		SeriesList.where(list_type: "liked").find_by(search_id: self.id)
 	end
 
 	def get_disliked
-		SeriesList.where(search_type: false).find_by(search_id: self.id)
+		SeriesList.where(list_type: "disliked").find_by(search_id: self.id)
 	end
 	
  	private
@@ -108,7 +110,9 @@ class Search < ApplicationRecord
 				series.each { |show| series_ids.push( show['id'] ) }
 				create_series_list(series_ids)
 			else
-				puts "wow"
+				return if self.current_query == 'popular page'
+				byebug
+				raise Exception.new("no search results found")
 				# @todo no results
 			end
 		end

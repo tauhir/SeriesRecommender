@@ -36,7 +36,9 @@ class SearchesController < ApplicationController
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
-      redirect_to @search
+      # session[:search_id] = @search.id
+      cookies[:search_id] = @search.id
+      render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
     end
@@ -45,15 +47,11 @@ class SearchesController < ApplicationController
   # PATCH/PUT /searches/1
   # PATCH/PUT /searches/1.json
   def update
-    respond_to do |format|
-      
-      if @search.update(:current_query => params[:query])
-        format.html { redirect_to @search, notice: 'Search was successfully updated.' }
-        format.json { render :show, status: :ok, location: @search }
-      else
-        format.html { render :edit }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
+    if @search
+      @search.new_query({:current_query => params[:query]})
+      render json: {search_id: @search.id}, status: :ok
+    else
+      render json: {}, status: :bad
     end
   end
 
@@ -67,24 +65,33 @@ class SearchesController < ApplicationController
     end
   end
   
+  def has_session
+    state = false
+    id = nil
+    if cookies[:search_id]
+      state = true
+    end
+    render json: {session_status: state, id: cookies[:search_id]}, status: :ok
+  end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
   # this call also determine whether to post to show action or respond to
   def opinion
+    # TODO: check to see if the show is not liked/disliked and remove from that list
     @search = Search.find_by_id(params["searchId"])
-    seriesId = [params["seriesId"]]
-    params["liked"].eql?("true") ? type = true : type = false #ruby changes boolean to string somehow, probably due to params?
-    series = SeriesList.find_by(id: @search.id).try(:where, search_type: type) # shouldn't need first because there should only be one
+    seriesId = params["seriesId"]
+    params["liked"].eql?(true) ? type = "liked" : type = "disliked" #ruby changes boolean to string somehow, probably due to params? 2020-7-14 - THIS IS NOT A STRING ANYMORE
+    series = SeriesList.find_by(search_id: @search.id, list_type: type)
     if series 
       #append to series
-      series.external_series.append(seriesId)
+      series.append(seriesId)
     else
       #create series list
-      series = @search.create_series_list(seriesId, search_type: type)
+      series = @search.create_series_list(seriesId, list_type: type)
     end
     render json: {search: @search}, status: :ok
   end
-
+ # to do see why get disliked is not creating disliked list
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -160,12 +160,87 @@ if (small) {
 }
 }
   
+const sessionUrl ='http://'+ window.location.host + '/searches/checks';
+var search_id = null;
+
+function hasSession() {
+	fetch(sessionUrl)
+	.then(
+		function(response) {
+			if (response.status !== 200) {
+			console.log('Looks like there was a problem. Status Code: ' +
+				response.status);
+			return;
+			}
+			// Examine the text in the response
+			response.json().then(function(data) {
+			console.log(data);
+			search_id = data['id'];
+			if (data['session_status']) {
+				// id exists, prompt user to update to start new search or update
+				debugger;
+				$('#searchModal').modal("toggle")
+			} 
+			else {
+				console.log("new")
+				SessionButtonpress(true)
+			}
+			});
+    	}
+  	)
+	.catch(function(err) {
+    	console.log('Fetch Error :-S', err);
+	});
+}
+
+	
+	function SessionButtonpress(response) {
+		var createUpdateUrl ='http://'+ window.location.host
+		var query_method = 'post'
+		if (response == true) {
+			// create search
+			createUpdateUrl += '/searches/'
+		}
+		else {
+			console.log('here00');
+			createUpdateUrl += '/searches/'+ search_id
+			query_method = 'put'
+		}		
+		fetch(createUpdateUrl, {
+			headers: {"Content-type": "application/json; charset=UTF-8" },
+			method: query_method,
+			body: JSON.stringify({
+				"query":document.getElementById('query').value
+			})
+		  })
+		.then(
+			function(response) {
+			if (response.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: ' +
+				response.status);
+				return;
+			}
+
+			// Examine the text in the response
+			response.json().then(function(data) {
+				console.log(data);
+				window.location ='/searches/' + data['search_id']
+			});
+			}
+		)
+		.catch(function(err) {
+			console.log('Fetch Error :-S', err);
+		});
+
+	}
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr
 window.noImage = noImage;
 window.InfoToggle = InfoToggle;
 window.showrating = showrating;
 window.toggleSidebar = toggleSidebar;
+window.hasSession = hasSession;
+window.SessionButtonpress = SessionButtonpress;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
