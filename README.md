@@ -28,7 +28,7 @@ To Run
 * Migrate the server:
 > rails db:migrate
 * Start the application:
-> foreman start
+> ./bin/webpack-dev-server & bundle exec rails s && fg
 
 TODO:
 Application Needs (in order of importance):
