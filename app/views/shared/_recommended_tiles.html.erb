@@ -1,5 +1,5 @@
 <%= stylesheet_pack_tag 'stylesheets/shared' %>
-<% series_list = local_assigns[:locals][:series_list] %>
+<% series_list = local_assigns[:locals][:recommended_list] %>
 <section id="media_results" class="panel_results">
 	<div class="my-carousel">
 		<% (series_list.get_list).first(10).each do |id| %>

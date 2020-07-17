@@ -77,20 +77,21 @@ class SearchesController < ApplicationController
   # this should create a series list for likes or dislikes or append if
   # this call also determine whether to post to show action or respond to
   def opinion
+    # TODO: check to see if the show is not liked/disliked and remove from that list
     @search = Search.find_by_id(params["searchId"])
     seriesId = params["seriesId"]
-    params["liked"].eql?(true) ? type = true : type = false #ruby changes boolean to string somehow, probably due to params? 2020-7-14 - THIS IS NOT A STRING ANYMORE
-    series = SeriesList.find_by(search_id: 63, search_type: true)
+    params["liked"].eql?(true) ? type = "liked" : type = "disliked" #ruby changes boolean to string somehow, probably due to params? 2020-7-14 - THIS IS NOT A STRING ANYMORE
+    series = SeriesList.find_by(search_id: @search.id, list_type: type)
     if series 
       #append to series
       series.append(seriesId)
     else
       #create series list
-      series = @search.create_series_list(seriesId, search_type: type)
+      series = @search.create_series_list(seriesId, list_type: type)
     end
     render json: {search: @search}, status: :ok
   end
-
+ # to do see why get disliked is not creating disliked list
 
   private
     # Use callbacks to share common setup or constraints between actions.
