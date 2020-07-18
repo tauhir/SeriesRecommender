@@ -38,6 +38,7 @@ class SearchesController < ApplicationController
       # redirect_to :controller => series_lists 
       # session[:search_id] = @search.id
       cookies[:search_id] = @search.id
+      cookies[:last_query_time] = Time.now
       render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
@@ -49,6 +50,7 @@ class SearchesController < ApplicationController
   def update
     if @search
       @search.new_query({:current_query => params[:query]})
+      cookies[:last_query_time] = Time.now
       render json: {search_id: @search.id}, status: :ok
     else
       render json: {}, status: :bad
@@ -66,12 +68,15 @@ class SearchesController < ApplicationController
   end
   
   def has_session
-    state = false
+    
+    state = "no_session"
     id = nil
-    if cookies[:search_id]
-      state = true
-    end
-    render json: {session_status: state, id: cookies[:search_id]}, status: :ok
+    if cookies[:last_query_time] && Time.now-cookies[:last_query_time] < 12 # this checks to see if the user was on the system in the last 12 hours, maybe should make it less
+      state = "active_session"
+    elsif cookies[:search_id]
+      state = "inactive_session"
+    end 
+    render json: {session_status: state, id: cookies[:search_id], }, status: :ok
   end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
@@ -89,9 +94,9 @@ class SearchesController < ApplicationController
       #create series list
       series = @search.create_series_list(seriesId, list_type: type)
     end
+    cookies[:last_query_time] = Time.now
     render json: {search: @search}, status: :ok
   end
- # to do see why get disliked is not creating disliked list
 
   private
     # Use callbacks to share common setup or constraints between actions.

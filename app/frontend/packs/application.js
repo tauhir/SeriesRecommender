@@ -85,7 +85,6 @@ function InfoToggle(element, showState) {
  		boolean value to set seriesList type
  	searchId::
 		searchId of the seriesList to find the search object
-
 */	
 const url ='http://'+ window.location.host + '/searches/opinion'
 function showrating(seriesId, state,searchId,object) {
@@ -176,10 +175,12 @@ function hasSession() {
 			response.json().then(function(data) {
 			console.log(data);
 			search_id = data['id'];
-			if (data['session_status']) {
+			if (data['session_status'] == 'inactive_session') {
 				// id exists, prompt user to update to start new search or update
-				debugger;
 				$('#searchModal').modal("toggle")
+			}
+			else if (data['session_status'] == 'active_session') {
+				SessionButtonpress(false)
 			} 
 			else {
 				console.log("new")
@@ -247,5 +248,3 @@ window.SessionButtonpress = SessionButtonpress;
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-
