@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'searches/update', to: 'searches#update', as: 'update_search'
   #resources :series_lists
   get '/series_lists/:id', to: 'series_lists#show', as: 'series_list'
+  get '/recommended', to: 'searches#recommendations'
   root to: 'series_lists#popular'
   get 'home/new'
   get 'home/index'
