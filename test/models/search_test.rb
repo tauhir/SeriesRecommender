@@ -27,5 +27,16 @@ class SearchTest < ActiveSupport::TestCase
 	search.create_series_list(serieslist[4,6], list_type: "disliked")
 	search.get_recommended
   end
+
+  test 'remove_from_recommended' do
+	# issue with this is that I can't presume the outcome and compare because of new tv shows so we'll test if it works
+	search = Search.create({'current_query':'How I'})
+	serieslist = search.get_series.get_list
+	search.create_series_list([1668,1100,4556,2691], list_type: "liked")
+	search.create_series_list(serieslist[4,6], list_type: "disliked")
+	show_to_remove = search.get_recommended.get_list[0]
+	search.get_disliked.append(show_to_remove)
+	assert( (search.get_recommended.get_list.include? show_to_remove) == false, "Did not remove disliked show from recommends")
+  end
 end
  
