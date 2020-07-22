@@ -4,7 +4,7 @@ class CreateSeriesLists < ActiveRecord::Migration[6.0]
       t.string :api_id
       t.string :name
       t.string :language
-      t.string :external_series, array: true, default: []      
+      t.integer :external_series, array: true, default: []      
       t.timestamps
     end
   end

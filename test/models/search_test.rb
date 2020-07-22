@@ -33,9 +33,11 @@ class SearchTest < ActiveSupport::TestCase
 	search = Search.create({'current_query':'How I'})
 	serieslist = search.get_series.get_list
 	search.create_series_list([1668,1100,4556,2691], list_type: "liked")
-	search.create_series_list(serieslist[4,6], list_type: "disliked")
-	show_to_remove = search.get_recommended.get_list[0]
+	search.create_series_list([4250], list_type: "disliked")
+	orig_recommends = search.get_recommended.get_list
+	show_to_remove = orig_recommends[10]
 	search.get_disliked.append(show_to_remove)
+	new_recommends = search.get_recommended.get_list
 	assert( (search.get_recommended.get_list.include? show_to_remove) == false, "Did not remove disliked show from recommends")
   end
 end

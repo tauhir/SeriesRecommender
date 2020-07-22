@@ -32,4 +32,10 @@ class SeriesList < ApplicationRecord
 		self.external_series.append(series_to_add)
 		self.save
 	end
+
+	# this could be dangerous to the list because it replaces everything
+	def set_series(series_to_add)
+		self.external_series = series_to_add
+		self.save
+	end
 end
