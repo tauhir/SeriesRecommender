@@ -8,7 +8,7 @@ class SeriesList < ApplicationRecord
 
 	def get_series(id)
 		
-		api_response = Request.get_json('https://api.themoviedb.org/3/tv/',id)
+		api_response = Request.get_json('https://api.themoviedb.org/3/tv/',id.to_s)
 		api_results = api_response[0]
 		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
 		api_results

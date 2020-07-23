@@ -43,7 +43,7 @@ class Search < ApplicationRecord
 		# 	This will update whenever a user likes/dislikes something
 		return nil if !self.get_liked #should display a section telling users to start liking to get started
 		liked = self.get_liked.get_list
-		disliked = self.get_disliked.get_list
+		disliked = self.get_disliked.try(:get_list) 
 		
 		recommends = []		#going to be the 2d array
 		

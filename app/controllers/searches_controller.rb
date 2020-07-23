@@ -71,7 +71,7 @@ class SearchesController < ApplicationController
     
     state = "no_session"
     id = nil
-    if cookies[:last_query_time] && Time.now-cookies[:last_query_time] < 12 # this checks to see if the user was on the system in the last 12 hours, maybe should make it less
+    if cookies[:last_query_time] && (Time.now-Time.parse(cookies[:last_query_time]))/3600 < 12 # this checks to see if the user was on the system in the last 12 hours, maybe should make it less
       state = "active_session"
     elsif cookies[:search_id]
       state = "inactive_session"
