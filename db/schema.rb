@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_170352) do
     t.string "api_id"
     t.string "name"
     t.string "language"
-    t.string "external_series", default: [], array: true
+    t.integer "external_series", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "search_id", null: false
