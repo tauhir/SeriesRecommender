@@ -68,7 +68,6 @@ class SearchesController < ApplicationController
   end
   
   def has_session
-    
     state = "no_session"
     id = nil
     if cookies[:last_query_time] && (Time.now-Time.parse(cookies[:last_query_time]))/3600 < 12 # this checks to see if the user was on the system in the last 12 hours, maybe should make it less
@@ -76,7 +75,11 @@ class SearchesController < ApplicationController
     elsif cookies[:search_id]
       state = "inactive_session"
     end 
-    render json: {session_status: state, id: cookies[:search_id], }, status: :ok
+    respond_to do |format|
+      format.js { render json: {session_status: state, id: cookies[:search_id]}, status: :ok }
+      format.html { {session_status: state, id: cookies[:search_id]} }
+    end
+
   end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
@@ -96,6 +99,10 @@ class SearchesController < ApplicationController
     end
     cookies[:last_query_time] = Time.now
     render json: {search: @search}, status: :ok
+  end
+
+  def recommendations
+    @series_list = Search.find_by(id: has_session[:id]).get_recommended if has_session
   end
 
   private
