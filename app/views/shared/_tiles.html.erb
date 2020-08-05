@@ -5,7 +5,7 @@
 	<div class="parent">
 		<% (series_list.get_list).first(10).each do |id| %>
 			<% series = series_list.get_series(id) %>
-			<div class="card tile" onmouseover="InfoToggle(this,true)" onmouseout="InfoToggle(this,false)" >
+			<div class="card tile" onmouseover="InfoToggle(this,true,<%= series['vote_average'] %>)" onmouseout="InfoToggle(this,false,<%= series['vote_average'] %>)" >
 				<img class="card-img-top inner-img" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);"> 
 				<div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
 					<div class="inner">
@@ -13,19 +13,23 @@
 						<div class="container" />
 							<div class="row">
 								<div class="col-8 metadata">
-									<figure class="chart-one animate">
-										<svg role="img" xmlns="http://www.w3.org/2000/svg">
-											<title>[title here]< /title>
-											<desc>[long description here]</desc>
-											<circle class="circle-background"/>
-											<circle class="circle-foreground"/>
-										</svg>
-										<figcaption>25% of all males like donuts.</figcaption>
-									</figure>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<p><%= series['vote_average'] %>/10</p>
+									<div class="rating">
+										<div class="rating-upper" style="width: 0%">
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+										</div>
+										<div class="rating-lower">
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+										</div>
+									</div>
 								</div>
-								<div class="col-8 metadata"><%= series_list.get_genres(series,3) %></div>
 							</div>
 						</div>
 						<p class="card-text"> <%= series['overview']%></p>

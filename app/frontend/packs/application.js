@@ -7,13 +7,13 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
 require.context('../packs/images', true);
 window.jQuery = window.$ = require('jquery')
 import 'bootstrap/dist/js/bootstrap';
 import 'packs/stylesheets.scss'
 import FooImage from 'packs/images/image.png'
 import 'slick-carousel/slick/slick';
-
 //console.log("Hello from hello.js");
 $(document).ready(function(){
 	$('.my-carousel').slick({
@@ -64,9 +64,11 @@ function noImage(element) {
  	showState::
  		boolean value to set seriesList type
 */	
-function InfoToggle(element, showState) {
+function InfoToggle(element, showState, percentage) {
 	if (showState) {
 		element.querySelector(".inner").style.display = "block";
+		var aper = (parseFloat(percentage) *10).toString() + "%";
+		element.querySelector('.rating-upper').style.width = aper;
 	}
 	else {
 		element.querySelector(".inner").style.display = "none";
