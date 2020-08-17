@@ -2,9 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .noImage {
-   position: relative;
-   top: 50%;
-   transform: translateY(-50%);
+  height: inherit;
+  filter: invert(1);
 }
 
 .search_page_wrapper {
@@ -69,12 +68,12 @@
 
 .fa-thumbs-up, .fa-thumbs-down {
   color:rgb(77, 70, 70);
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 .fa-thumbs-up:hover, .fa-thumbs-down:hover {
   float:none !important;
   color:rgb(50, 108, 233);
-  font-size: 4rem;
+  font-size: 2rem;
 }
 .fa-thumbs-down:hover {
   color:rgb(240, 4, 4);
@@ -90,8 +89,8 @@
    overflow: hidden;
    font-weight: 5rem;
    text-shadow: 1px 1px black;
-   font-size:1.2em;
-   width: 90%;
+   font-size:1em;
+   width: 100%;
   // line-height: 1rem;
   // min-height: 6rem;
 }
@@ -108,13 +107,23 @@
 .card-body {
    color: white !important;
 }
+
+.more-button {
+  position: relative;
+  left: 40%;
+  margin: 0;
+  font-size: 4em;
+  color: white;
+  text-shadow: 10em 10em black;
+  cursor: pointer;
+}
 //**************************************************************************************
 // Star rating:
 .rating {
    display: inline-block;
    unicode-bidi: bidi-override;
    color: #888888;
-   font-size: 25px;
+   font-size: 10px;
    height: 25px;
    width: auto;
    margin: 0;
@@ -138,6 +147,49 @@
    display: flex;
    z-index: 0;
  }
+
+ //*************************************************************************
+// Modal Stuff
+.modal-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 1.5rem;
+}
+
+.item0 {
+  grid-column-start: 1; 
+  grid-column-end: 3; 
+}
+
+.item1 {
+  grid-column-start: 1; 
+  grid-column-end: 2; 
+  grid-row-start: 2; 
+  grid-row-end: 6; 
+}
+
+.starItem {
+  grid-row-start: 2; 
+  grid-row-end: 3;
+}
+.infoItem {
+margin: 0;
+padding: 0;
+}
+.column-child {
+margin: 0;
+padding: 0;
+}
+
+.synops {
+  grid-column-start: 1; 
+  grid-column-end: 3;
+}
+
+.heading {
+  font-size: 2em;
+  font-family: Khand;
+}
 
  //*************************************************************************
 .my-carousel {

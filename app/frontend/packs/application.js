@@ -15,6 +15,7 @@ import 'packs/stylesheets.scss'
 import FooImage from 'packs/images/image.png'
 import 'slick-carousel/slick/slick';
 //console.log("Hello from hello.js");
+
 $(document).ready(function(){
 	$('.my-carousel').slick({
 		slidesToShow: 12, //this fixes my problem with borders for now

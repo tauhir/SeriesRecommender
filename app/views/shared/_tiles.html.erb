@@ -15,18 +15,18 @@
 								<div class="col-8 metadata">
 									<div class="rating">
 										<div class="rating-upper" style="width: 0%">
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
 										</div>
 										<div class="rating-lower">
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
-											<span>★</span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
+											<span class="fa fa-star" aria-hidden="true"></span>
 										</div>
 									</div>
 								</div>
@@ -36,6 +36,55 @@
 						<div id="thumbs">
 							<i class="fas fa-thumbs-up" aria-hidden="true" onclick="showrating(<%= series['id']%>, true, <%= series_list.search_id %>,this )"></i>
 							<i class="fas fa-thumbs-down" aria-hidden="true" onclick="showrating(<%= series['id']%>, false, <%= series_list.search_id%>,this )"></i>
+						</div>
+						<i class="btn more-button fas fa-caret-down" data-toggle="modal" data-target="#exampleModal"></i>
+					</div>
+				</div>
+			</div>
+			<div id="exampleModal" class="modal" tabindex="-1">
+				<div class="modal-container">
+					<h1 class="card-title item0"><%= series['name']%></h1>
+					<div class= "item1">
+						<img class="image" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
+					</div>
+					<div class= "infoItem">
+						<div class="column-child heading">
+							genre: 
+						</div>
+						<div class="column-child">
+							attack movies
+						</div>
+					</div>
+					<div class= "starItem">
+						<div class="column-child heading">
+							rating: 
+						</div>
+						<div class="column-child">
+							attack movies
+						</div>
+					</div>
+					<div class= "infoItem">
+						<div class="column-child heading">
+							year: 
+						</div>
+						<div class="column-child">
+							attack movies
+						</div>
+					</div>
+					<div class= "infoItem">
+						<div class="column-child heading">
+							cast: 
+						</div>
+						<div class="column-child">
+							attack movies
+						</div>
+					</div>
+					<div class= "synops">
+						<div class="column-child heading">
+							synopsis: 
+						</div>
+						<div class="column-child">
+							attack movies
 						</div>
 					</div>
 				</div>
