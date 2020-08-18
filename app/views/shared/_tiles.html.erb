@@ -43,16 +43,24 @@
 			</div>
 			<div id="exampleModal" class="modal" tabindex="-1">
 				<div class="modal-container">
-					<h1 class="card-title item0"><%= series['name']%></h1>
+					<h1 class="card-title item0"><%= series["genres"]%></h1>
 					<div class= "item1">
 						<img class="image" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
 					</div>
 					<div class= "infoItem">
 						<div class="column-child heading">
-							genre: 
+							Genre: 
 						</div>
 						<div class="column-child">
-							attack movies
+							<% genres = "" %>
+							<% series["genres"].each_with_index do |genre, index| %>
+								<% if index != series["genres"].size - 1 %>
+									<% genres += genre["name"] + ", " %>
+								<% else %>
+									<% genres += genre["name"] %>
+								<% end %>
+							<% end %>
+							<%= genres %>
 						</div>
 					</div>
 					<div class= "starItem">

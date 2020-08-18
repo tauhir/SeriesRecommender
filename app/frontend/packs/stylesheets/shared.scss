@@ -154,6 +154,8 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-gap: 1.5rem;
+  background-color: gray;
+  font-family: 'Khand',sans-serif;
 }
 
 .item0 {
@@ -188,12 +190,13 @@ padding: 0;
 
 .heading {
   font-size: 2em;
-  font-family: Khand;
+  font-weight: 700;
 }
 
  //*************************************************************************
 .my-carousel {
    margin-left: 0;
+   
 }
 
 .slick-slide {
