@@ -9,6 +9,7 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 exec $SHELL
 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 rbenv install 2.7.0 #ruby 2.7.0
+rbenv local 2.70
 gem install bundler
 rbenv rehash
 gem install rails -v 6.0.2
@@ -23,6 +24,5 @@ sudo apt update && sudo apt install yarn
 yarn install
 gem install dotenv
 bundle install
-sudo pg_ctlcluster 10 main start
 #etc.
 
