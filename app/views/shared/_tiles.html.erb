@@ -33,19 +33,48 @@
 							</div>
 						</div>
 						<p class="card-text"> <%= series['overview']%></p>
-						<div id="thumbs">
+						<div class="thumbs">
 							<i class="fas fa-thumbs-up" aria-hidden="true" onclick="showrating(<%= series['id']%>, true, <%= series_list.search_id %>,this )"></i>
 							<i class="fas fa-thumbs-down" aria-hidden="true" onclick="showrating(<%= series['id']%>, false, <%= series_list.search_id%>,this )"></i>
 						</div>
-						<i class="btn more-button fas fa-caret-down" data-toggle="modal" data-target="#exampleModal"></i>
+						<div class="button-row">
+							<i class="btn more-button fas fa-caret-down" data-toggle="modal" onclick ="doModal(<%= series['id']%>, <%=series['vote_average']%>)"></i>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="exampleModal" class="modal" tabindex="-1">
+			<div id="<%= series["id"]%>_modal" class="modal media-modal" tabindex="-1" aria-hidden="true" >
+				<button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 				<div class="modal-container">
-					<h1 class="card-title item0"><%= series["genres"]%></h1>
-					<div class= "item1">
-						<img class="image" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);">
+					<h1 class="item0"><%= series["name"]%></h1>		
+					<div id="carouselExampleIndicators<%= series["id"]%>" class="carousel slide item1" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<% count = 0 %>
+							<% series["images"].size.times do %>
+								<li data-target="#carousel<%= series["id"]%>" data-slide-to="<%= count %>" class="active"></li>
+							<% end %>
+						</ol>
+						<div class="carousel-inner">
+							<% series["images"].each_with_index do |image, index| %>
+							<% if index == 0%>
+								<div class="carousel-item active">
+							<% else %>
+								<div class="carousel-item">
+							<% end %>
+								<img class="image d-block w-100" src="https://image.tmdb.org/t/p/w500/<%= image %>" alt="no image" onerror="noImage(this);">
+							</div>
+							<% end %>
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleIndicators<%= series["id"]%>" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators<%= series["id"]%>" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
 					</div>
 					<div class= "infoItem">
 						<div class="column-child heading">
@@ -65,34 +94,76 @@
 					</div>
 					<div class= "starItem">
 						<div class="column-child heading">
-							rating: 
+							User rating: 
 						</div>
 						<div class="column-child">
-							attack movies
+							<div class="container" />
+								<div class="row">
+									<div class="col-8 metadata">
+										<div class="rating">
+											<div class="rating-upper" style="width: 0%">
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+											</div>
+											<div class="rating-lower">
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+												<span class="fa fa-star" aria-hidden="true"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+								by <%= series["vote_count"]%> users
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class= "infoItem">
 						<div class="column-child heading">
-							year: 
+							Seasons: 
 						</div>
 						<div class="column-child">
-							attack movies
+							<%= series["number_of_seasons"]%> (<%= series["number_of_episodes"]%> episodes)
 						</div>
 					</div>
 					<div class= "infoItem">
 						<div class="column-child heading">
-							cast: 
+							First aired: 
 						</div>
 						<div class="column-child">
-							attack movies
+							<%= series["first_air_date"]%>
+						</div>
+					</div>
+					<div class= "infoItem">
+						<div class="column-child heading">
+							Status:
+						</div>
+						<div class="column-child">
+							<%= series["status"]%>
+						</div>
+					</div>
+					<div class= "infoItem">
+						<div class="column-child heading">
+							Cast:
+						</div>
+						<div class="column-child">
+							<% cast = []%>
+							<% series["cast"].each do |actor| cast.append(actor["name"]) end %>
+							<%= cast[0,5]* ", " %>
 						</div>
 					</div>
 					<div class= "synops">
 						<div class="column-child heading">
-							synopsis: 
+							Overview:
 						</div>
 						<div class="column-child">
-							attack movies
+							<%= series["overview"]%>
 						</div>
 					</div>
 				</div>

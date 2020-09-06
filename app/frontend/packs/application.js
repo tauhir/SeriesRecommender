@@ -68,14 +68,26 @@ function noImage(element) {
 function InfoToggle(element, showState, percentage) {
 	if (showState) {
 		element.querySelector(".inner").style.display = "block";
-		var aper = (parseFloat(percentage) *10).toString() + "%";
-		element.querySelector('.rating-upper').style.width = aper;
+		doRatings(element, percentage);
 	}
 	else {
 		element.querySelector(".inner").style.display = "none";
 	}
 }
 
+function doRatings(element, percentage) {
+	var aper = (parseFloat(percentage) *10).toString() + "%";
+	element.querySelector('.rating-upper').style.width = aper;
+}
+
+function doModal(seriesId, percentage) {
+	doRatings(document.getElementById(seriesId+"_modal"), percentage);
+	console.log(seriesId+'_modal');
+	$("#"+seriesId+'_modal').modal({
+		show: true,
+		keyboard: false
+	})	
+}
 /*
  checks if show is liked, disliked
  goes to search page, giving user ability to search for new show or displays similar below
@@ -245,6 +257,7 @@ window.showrating = showrating;
 window.toggleSidebar = toggleSidebar;
 window.hasSession = hasSession;
 window.SessionButtonpress = SessionButtonpress;
+window.doModal = doModal;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
