@@ -1,6 +1,8 @@
 #!/bin/sh
+sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 apt-get update  # To get the latest package lists
-apt-get install -y libreadline-dev zlib1g-dev build-essential npm
+apt-get install -y libreadline-dev zlib1g-dev build-essential npm postgresql postgresql-contrib libpq-dev wget ca-certificates
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
