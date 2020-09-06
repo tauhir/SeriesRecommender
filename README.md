@@ -46,27 +46,27 @@
 
 ## :dart: About ##
 
-Describe your project
+I needed a way to find television shows I might like so I built this webapp. It makes use of TMDB's API to find and displays tv shows which can then be liked/disliked which will help determine a recommended list.
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Display current popular shows;\
+:heavy_check_mark: Search for shows;\
+:heavy_check_mark: Recommend shows based on liked and disliked shows;
+:heavy_check_mark: Remember previous searches
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+- [Rails](https://rubyonrails.org/)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
+- [Webpack](https://webpack.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) installed. You will also need to signup for [TMDB](https://developers.themoviedb.org/3/getting-started/introduction) user account which will give you access to an API key.
 
 ## :checkered_flag: Starting ##
 
@@ -74,16 +74,46 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 # Clone this project
 $ git clone https://github.com/tauhir/seriesrecommender
 
-# Access
+# Access folder
 $ cd seriesrecommender
 
-# Install dependencies
-$ yarn
+# Install dependencies using setup.sh script - this will install rbenv to manage ruby versions, postgres and node
+$ chmod +x setup.sh
+$ setup.sh
 
-# Run the project
-$ yarn start
+# Create your user role for the Postgres db (replace my username tauhir with yours):
+$ sudo -u postgres createuser --superuser tauhir
+
+# Start the Postgres server
+$ sudo pg_ctlcluster 12 main start
+
+# Open .envsample and replace the API key with your own. Save the file as .env
+
+# First time running
+$ rails db:create
+$ rails db:migrate
+
+# To start:
+$ ./bin/webpack-dev-server & bundle exec rails s && fg
 
 # The server will initialize in the <http://localhost:3000>
+```
+
+## :dart: Todo ##
+
+The following list includes features that need to be worked on and bugs that need to be fixed
+ - Build My Searches section
+ - Login Functionality 
+
+ ```bash
+ TODOs from code:
+ - app/models/search.rb 
+  - line 5:need to update this to be able to search next page and add to list. might need to add current page attrib?
+  - line 19:can probably remove search_id param then use self.id 
+  - line 112: deal with search with no results
+- app/frontend/packs/application.js
+  - line 133: check to see if no search options left and let user know
+  - line 163: find better method than using window
 ```
 
 ## :memo: License ##
