@@ -3,10 +3,10 @@
 <section id="media_results">
 
 	<div class="parent">
-		<% (series_list.get_list).first(10).each do |id| %>
+		<% (series_list.get_list).first(30).each do |id| %>
 			<% series = series_list.get_series(id) %>
 			<div class="card tile" onmouseover="InfoToggle(this,true,<%= series['vote_average'] %>)" onmouseout="InfoToggle(this,false,<%= series['vote_average'] %>)" >
-				<img class="card-img-top inner-img" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);"> 
+				<img class="card-img-top inner-img" loading="lazy" src="https://image.tmdb.org/t/p/w342/<%= series["poster_path"]%>" alt="no image" onerror="noImage(this);"> 
 				<div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
 					<div class="inner">
 						<h1 class="card-title"><%= series['name']%></h1>
@@ -63,7 +63,7 @@
 							<% else %>
 								<div class="carousel-item">
 							<% end %>
-								<img class="image d-block w-100" src="https://image.tmdb.org/t/p/w500/<%= image %>" alt="no image" onerror="noImage(this);">
+								<img class="image d-block w-100" loading="lazy" src="https://image.tmdb.org/t/p/w500/<%= image %>" alt="no image" onerror="noImage(this);">
 							</div>
 							<% end %>
 						</div>
