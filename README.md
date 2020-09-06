@@ -104,7 +104,9 @@ $ ./bin/webpack-dev-server & bundle exec rails s && fg
 
 The following list includes features that need to be worked on and bugs that need to be fixed
  - Build My Searches section
- - Login Functionality 
+ - Login Functionality
+ - Share lists
+ - Show user where they can watch 
 
  ```bash
  TODOs from code:
