@@ -102,7 +102,8 @@ class SearchesController < ApplicationController
   end
 
   def recommendations
-    @series_list = Search.find_by(id: has_session[:id]).get_recommended if has_session
+    @series_list = Search.find_by(id: has_session[:id]).get_recommended if has_session[:session_status] == 'active_session'
+    render 'searches/recommendations'
   end
 
   private

@@ -9,9 +9,24 @@ class SeriesList < ApplicationRecord
 	def get_series(id)
 		
 		api_response = Request.get_json('https://api.themoviedb.org/3/tv/',id.to_s)
-		api_results = api_response[0]
+		seriesInfo = api_response[0]
 		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
-		api_results
+		api_response = Request.get_json('https://api.themoviedb.org/3/tv/',(id.to_s+"/credits"))
+		creditsInfo = api_response[0]
+		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
+		
+		query_hash = {'include_image_language': 'en'}
+		query_path = 'https://api.themoviedb.org/3/tv/'+id.to_s+"/images"
+		api_response = Request.get_json(query_path, query_hash)
+		
+		raise Exception.new("status: " + api_response[1].to_s) if api_response[1] != 200
+		images = []
+		api_response[0]["posters"].each do |x| images.append(x["file_path"]) end
+		
+		seriesInfo["images"] = images[0,4]
+		seriesInfo["cast"] = creditsInfo["cast"]
+		seriesInfo
+
 	end
 
 	def get_list

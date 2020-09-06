@@ -1,5 +1,9 @@
-<div class = "Container">
-    <div class = "content">
-        <%= render "shared/tiles", locals: { series_list: @series_list }%> 
+<% if @series_list %>
+    <div class = "Container">
+        <div class = "content">
+            <%= render "shared/tiles", locals: { series_list: @series_list }%> 
+        </div>
     </div>
-</div>
+<% else %>
+   <div> oh no </div>
+<% end %>

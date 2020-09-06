@@ -7,14 +7,15 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
 require.context('../packs/images', true);
 window.jQuery = window.$ = require('jquery')
 import 'bootstrap/dist/js/bootstrap';
 import 'packs/stylesheets.scss'
 import FooImage from 'packs/images/image.png'
 import 'slick-carousel/slick/slick';
-
 //console.log("Hello from hello.js");
+
 $(document).ready(function(){
 	$('.my-carousel').slick({
 		slidesToShow: 12, //this fixes my problem with borders for now
@@ -64,15 +65,29 @@ function noImage(element) {
  	showState::
  		boolean value to set seriesList type
 */	
-function InfoToggle(element, showState) {
+function InfoToggle(element, showState, percentage) {
 	if (showState) {
 		element.querySelector(".inner").style.display = "block";
+		doRatings(element, percentage);
 	}
 	else {
 		element.querySelector(".inner").style.display = "none";
 	}
 }
 
+function doRatings(element, percentage) {
+	var aper = (parseFloat(percentage) *10).toString() + "%";
+	element.querySelector('.rating-upper').style.width = aper;
+}
+
+function doModal(seriesId, percentage) {
+	doRatings(document.getElementById(seriesId+"_modal"), percentage);
+	console.log(seriesId+'_modal');
+	$("#"+seriesId+'_modal').modal({
+		show: true,
+		keyboard: false
+	})	
+}
 /*
  checks if show is liked, disliked
  goes to search page, giving user ability to search for new show or displays similar below
@@ -242,6 +257,7 @@ window.showrating = showrating;
 window.toggleSidebar = toggleSidebar;
 window.hasSession = hasSession;
 window.SessionButtonpress = SessionButtonpress;
+window.doModal = doModal;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

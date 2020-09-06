@@ -2,9 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .noImage {
-   position: relative;
-   top: 50%;
-   transform: translateY(-50%);
+  height: inherit;
+  filter: invert(1);
 }
 
 .search_page_wrapper {
@@ -15,8 +14,223 @@
 }
 
 
+
+//**********************************************************************************
+// Search Cards
+.parent {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: row;
+   align-items: center;
+   justify-content: left;
+}
+
+.tile {
+   background-color: inherit;
+   padding:15px 15px;
+
+ }
+ 
+.inner-img {
+   width: 250px;
+   height: auto;
+}
+.card-img-overlay {
+   bottom: 0px;
+  
+}
+.inner {
+  display:none;
+  width: 90%;
+  
+}
+.metadata {
+  background: none;
+  padding: 0;
+  position: relative;
+  border-style: none;	
+  font-size: 1rem;
+  color:white;    
+  text-shadow: 1px 1px black;
+  i, p {
+     float: left;
+  }
+  p {
+     margin-top: 0;
+     margin-left: 10px;
+  }
+  i {
+     color: #ff9d00;
+     margin-top: 5px;
+     margin-left: 1px;
+  }
+}
+
+.fa-thumbs-up, .fa-thumbs-down {
+  color:#e1dddde3;
+  font-size: 1.5rem;
+}
+.fa-thumbs-up:hover, .fa-thumbs-down:hover {
+  float:none !important;
+  color:rgb(50, 108, 233);
+  font-size: 2rem;
+}
+.fa-thumbs-down:hover {
+  color:rgb(240, 4, 4);
+}
+.thumbs {
+  text-align: center;
+}
+
+.card-text {
+   color:white;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;  
+   overflow: hidden;
+   font-weight: 5rem;
+   text-shadow: 1px 1px black;
+   font-size:1em;
+   width: 100%;
+  // line-height: 1rem;
+  // min-height: 6rem;
+}
+.card-title {
+   font-size: 1.5em;
+   font-weight: 700;
+   color: #414345;
+   min-height: 1px;
+   color: white !important;
+   text-shadow: 2px 2px black;
+   width:inherit;
+}
+
+.card-body {
+   color: white !important;
+}
+
+.button-row {
+  text-align: center;
+}
+.more-button {
+  position: relative;
+  margin: 0;
+  font-size: 4em;
+  color: white;
+  text-shadow: 10em 10em black;
+  cursor: pointer;
+}
+//**************************************************************************************
+// Star rating:
+.rating {
+   display: inline-block;
+   unicode-bidi: bidi-override;
+   color: #888888;
+   font-size: 10px;
+   height: 25px;
+   width: auto;
+   margin: 0;
+   position: relative;
+   padding: 0;
+ }
+ 
+ .rating-upper {
+   color: #c52b2f;
+   padding: 0;
+   position: absolute;
+   z-index: 1;
+   display: flex;
+   top: 0;
+   left: 0;
+   overflow: hidden;
+ }
+ 
+ .rating-lower {
+   padding: 0;
+   display: flex;
+   z-index: 0;
+ }
+
+ //*************************************************************************
+// Modal Stuff
+
+.media-modal {
+  background-color:#808080e3;
+  border-radius: 25px;
+}
+.modal-container {
+  display: grid;
+  grid-template-columns: minmax(auto, 500px) minmax(auto, 200px);
+  grid-gap: 0.5rem;
+  font-family: 'Khand',sans-serif;
+}
+
+.modal {
+  height: auto;
+  width: auto;
+  left: 20%;
+  top: 10%;
+}
+
+.modal .rating {
+  font-size: 1.2rem;
+}
+.item0 {
+  grid-column-start: 2; 
+  grid-column-end: 4;
+  font-size: 4em;
+  font-weight: 700;
+  min-height: 1px;
+  color: white;
+  text-shadow: 2px 2px black;
+  width:inherit;
+  margin: 2rem 1rem 0 0;
+  word-wrap: break-word;
+  width: 500px;
+}
+button.close {
+  padding-right: 1rem;
+}
+
+.item1 {
+  grid-column-start: 1; 
+  grid-column-end: 2; 
+  grid-row-start: 1; 
+  grid-row-end: 6; 
+}
+
+.starItem {
+  grid-row-start: 2; 
+  grid-row-end: 3;
+}
+.infoItem {
+margin: 0;
+padding: 0;
+word-wrap: break-word;
+width: 200px;
+}
+.column-child {
+margin: 0;
+padding: 0;
+font-size: 1.2rem;
+}
+
+.synops {
+  grid-column-start: 2; 
+  grid-column-end: 4;
+  word-wrap: break-word;
+  width: 500px;
+}
+
+.heading {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+ //*************************************************************************
 .my-carousel {
    margin-left: 0;
+   
 }
 
 .slick-slide {
@@ -39,23 +253,6 @@
    color: #BFAFB2;
    font-size: 4rem;
 }
-.search_card {
-   margin-left: 30px;
-   position: relative;
-   top: 0;
-   left: 0;
-   display: flex;
-   flex-basis: 21%;
-   align-content: flex-start;
-   border: 1px solid #e3e3e3;
-   border-radius: var(--imageBorderRadius);
-   overflow: hidden;
-   margin-top: 30px;
-   background: #c4c4c4;
-   //width: calc(((100vw - 260px - 80px - 64px) / 2));
-   //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
-}
-
 .carousel_card {
    margin-left: 30px;
    position: relative;
@@ -70,106 +267,8 @@
    //width: calc(((100vw - 260px - 80px - 64px) / 2));
    //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
 }
-.bg-primary {
-   background-color: black !important;
-}
-.search_card>.card-img-top {
-   -webkit-clip-path: inset(10% 0 20% 0);
-   height: 30rem;
-   max-width: 100%;
- }
-.card-img-top {
-   height: 30vh;
-   width: auto;
- }
- .card-title {
-    font-size: 2em;
-    font-weight: 700;
-    color: #414345;
-    min-height: 1px;
-    color: white !important;
-    text-shadow: 2px 2px black;
-    width:inherit;
- }
- 
- .card-body {
-    color: white !important;
- }
- 
-    
- .card-text {
-    color:white;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-    font-weight: 5rem;
-    text-shadow: 1px 1px black;
-    font-size:1.2em;
-    width: 90%;
-   // line-height: 1rem;
-   // min-height: 6rem;
- }
- 
 
- .card, .trailer-preview {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    &:hover {
-       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10), 0 8px 8px rgba(0, 0, 0, 0.18);
-    }   
- }
- 
- .card {
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-   border: 1px solid rgba(var(--lightGrey), 1);
-   background-color: #fff;
- }
- .card-img-overlay {
-     bottom: 0px;
-    
- }
-  .inner {
-    display:none;
-    width: 90%;
-    
-  }
- .metadata {
-    background: none;
-    padding: 0;
-    position: relative;
-    border-style: none;	
-    font-size: 1rem;
-    color:white;    
-    text-shadow: 1px 1px black;
-    i, p {
-       float: left;
-    }
-    p {
-       margin-top: 0;
-       margin-left: 10px;
-    }
-    i {
-       color: #ff9d00;
-       margin-top: 5px;
-       margin-left: 1px;
-    }
- }
 
- .fa-thumbs-up, .fa-thumbs-down {
-    color:rgb(77, 70, 70);
-    font-size: 3rem;
- }
- .fa-thumbs-up:hover, .fa-thumbs-down:hover {
-    float:none !important;
-    color:rgb(50, 108, 233);
-    font-size: 4rem;
- }
- .fa-thumbs-down:hover {
-    color:rgb(240, 4, 4);
- }
- #thumbs {
-    text-align: center;
- }
 
  .sidebar {
    height: 100%;
