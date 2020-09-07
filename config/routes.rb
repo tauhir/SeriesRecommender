@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'searches/checks', to: 'searches#has_session', as: 'has_session'
   resources :searches
   post '/searches/opinion', to: 'searches#opinion', as: 'opinion'
