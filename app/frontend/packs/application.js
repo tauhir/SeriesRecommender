@@ -174,7 +174,7 @@ if (small) {
 }
 }
   
-const sessionUrl ='http://'+ window.location.host + '/searches/checks';
+const sessionUrl ='https://'+ window.location.host + '/searches/checks';
 var search_id = null;
 
 function hasSession() {
