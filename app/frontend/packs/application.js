@@ -101,7 +101,7 @@ function doModal(seriesId, percentage) {
  	searchId::
 		searchId of the seriesList to find the search object
 */	
-const url ='http://'+ window.location.host + '/searches/opinion'
+const url ='https://'+ window.location.host + '/searches/opinion'
 function showrating(seriesId, state,searchId,object) {
 	console.log(seriesId, state,searchId);
 	fetch(url, {
