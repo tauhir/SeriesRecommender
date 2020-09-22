@@ -211,7 +211,7 @@ function hasSession() {
 
 	
 	function SessionButtonpress(response) {
-		var createUpdateUrl ='http://'+ window.location.host
+		var createUpdateUrl ='https://'+ window.location.host
 		var query_method = 'post'
 		if (response == true) {
 			// create search
