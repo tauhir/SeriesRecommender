@@ -57,3 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'faraday'
 gem 'faraday-request-timer'
 gem 'yard'
+gem "devise"
+gem "simple_token_authentication"

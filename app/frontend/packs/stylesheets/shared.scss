@@ -268,7 +268,8 @@ font-size: 1.2rem;
    //min-height: calc((((100vw - 80px - 260px - 64px) / 2)) * 1.5);
 }
 
-
+//*****************************************************************************************************************
+// Sidebar
 
  .sidebar {
    height: 100%;
@@ -374,4 +375,13 @@ font-size: 1.2rem;
  .wrap{
    width: 100%;
    position: absolute;
+ }
+
+ .bottom {
+  position:fixed;
+  bottom:0;
+ }
+
+ #wholebar .bottom {
+   bottom:10px !important;
  }
