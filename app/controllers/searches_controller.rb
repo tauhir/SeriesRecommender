@@ -41,7 +41,6 @@ class SearchesController < ApplicationController
       # redirect_to :controller => series_lists 
       # session[:search_id] = @search.id
       cookies[:search_id] = @search.id
-      cookies[:last_query_time] = Time.now
       render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
@@ -53,13 +52,14 @@ class SearchesController < ApplicationController
   def update
     if @search
       @search.new_query({:current_query => params[:query]})
-      cookies[:last_query_time] = Time.now
       render json: {search_id: @search.id}, status: :ok
     else
       render json: {}, status: :bad
     end
   end
 
+  def update_or_create
+    if 
   # DELETE /searches/1
   # DELETE /searches/1.json
   def destroy
