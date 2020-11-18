@@ -32,7 +32,10 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new({:current_query => params[:query]})
+    @search = Search.new({
+      :current_query  => params[:query],
+      :user_id         => user_signed_in? ? current_user.id : nil
+    })
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 

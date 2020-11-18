@@ -21,6 +21,11 @@ class Popular
             end
         end
         # we should now create a serieslist with this
-        SeriesList.create(:language => "en_US", :external_series => results, :search_id => 1, :list_type => "search") 
+        SeriesList.create(
+            :language           => "en_US",
+            :external_series    => results,
+            :search_id          => 1,
+            :list_type          => "search"
+            ) 
     end
 end

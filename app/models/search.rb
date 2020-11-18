@@ -4,6 +4,7 @@ require 'ApiConnection'
 class Search < ApplicationRecord
 	# @todo need to update this to be able to search next page and add to list. might need to add current page attrib?
 	# attr_accessor :query, :results, :pages
+	belongs_to :user, optional: true
 	attr_accessor :external_series
 	has_many :SeriesList
 	SEARCH_BASE = 'https://api.themoviedb.org/3/search/tv'
