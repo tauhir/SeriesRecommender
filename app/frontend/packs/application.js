@@ -173,19 +173,30 @@ if (small) {
 	small = true;
 }
 }
-  
-const sessionUrl ='https://'+ window.location.host + '/searches/checks';
-var search_id = null;
+var newSearch = false;  
+function submitSearch(el) {
+	document.createElement('searchbuttons');
+    var input = document.createElement('input');//prepare a new input DOM element
+    input.setAttribute('name', 'search_type');//set the param name
+    input.setAttribute('value', newSearch);//set the value
+    input.setAttribute('type', 'hidden')//set the type, like "hidden" or other
 
+    el.appendChild(input);//append the input to the form
+	debugger;
+    el.submit();//send with added input
+}
 
+function new_search(search) {
+		newSearch == search
+}
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr
 window.noImage = noImage;
 window.InfoToggle = InfoToggle;
 window.showrating = showrating;
 window.toggleSidebar = toggleSidebar;
-window.hasSession = hasSession;
-window.SessionButtonpress = SessionButtonpress;
+window.new_search = new_search;
+window.submitSearch = submitSearch;
 window.doModal = doModal;
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

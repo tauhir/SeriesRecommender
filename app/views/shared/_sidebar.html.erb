@@ -6,14 +6,19 @@
         <a href="#">My Searches</a><br>
 
         <div class="wrap">
-            <form action="javascript:hasSession()" class="search">
+            <form action="/searches/checks" method="post" onsubmit="event.preventDefault();submitSearch(this)">
+              <div class="search">
                 <input type="text" class="searchTerm" type="search" placeholder="Game of Thrones" id ='query' name="query">
-                <button type="submit" class="searchButton">
+                <button type="submit" class="searchButton" >
                     <i class="fa fa-search"></i>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-secondary">New Search</button>
-                  <button type="button" class="btn btn-secondary">Continue Search</button>             
-                </div>
+                </button>
+              </div>
+                <% if !has_search %>
+                  <div class="btn-group " id="searchbuttons" role="group" name="search_type">
+                    <button type="button" class="btn btn-secondary" onclick="new_search(true)">New Search</option>
+                    <button type="button" class="btn btn-secondary" onclick="new_search(false)">Continue Search</option>             
+                  </div>
+                <% end %>
             </form>
         </div>
 

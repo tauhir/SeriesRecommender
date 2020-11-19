@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'searches/checks', to: 'searches#has_session', as: 'has_session'
+  post 'searches/checks', to: 'searches#update_or_create', as: 'update_or_create'
   resources :searches
   post '/searches/opinion', to: 'searches#opinion', as: 'opinion'
   get 'searches/show', to: 'searches#show', as: 'show_search'

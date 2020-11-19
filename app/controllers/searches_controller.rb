@@ -33,14 +33,14 @@ class SearchesController < ApplicationController
   # POST /searches.json
   def create
     @search = Search.new({
-      :current_query  => params[:query],
-      :user_id         => user_signed_in? ? current_user.id : nil
+      :current_query    => params[:query],
+      :user_id          => user_signed_in? ? current_user.id : nil
     })
     if @search.save
       # redirect_to "series_lists/#{@search.id}"
       # redirect_to :controller => series_lists 
       # session[:search_id] = @search.id
-      cookies[:search_id] = @search.id
+      session[:current_search_id] = @search.id
       render json: {search_id: @search.id}, status: :ok
     else
       raise Exception.new("no series series")
@@ -59,7 +59,13 @@ class SearchesController < ApplicationController
   end
 
   def update_or_create
-    if 
+    if ["false", nil].include? params["search_type"]
+      @search = Search.find_by(id: session[:current_search_id]) if !@search
+      self.update
+    else
+      self.create
+    end
+  end
   # DELETE /searches/1
   # DELETE /searches/1.json
   def destroy
