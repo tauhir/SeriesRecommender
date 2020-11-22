@@ -173,7 +173,7 @@ if (small) {
 	small = true;
 }
 }
-var newSearch = false;  
+var newSearch = null;
 function submitSearch(el) {
 	document.createElement('searchbuttons');
     var input = document.createElement('input');//prepare a new input DOM element

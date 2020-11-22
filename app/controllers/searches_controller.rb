@@ -14,6 +14,7 @@ class SearchesController < ApplicationController
     
     if @search
       #this for when brought here locally
+      @search
     else 
       @search = Search.find_by(id: params[:id])
     end
@@ -41,7 +42,7 @@ class SearchesController < ApplicationController
       # redirect_to :controller => series_lists 
       # session[:search_id] = @search.id
       session[:current_search_id] = @search.id
-      render json: {search_id: @search.id}, status: :ok
+      #render json: {search_id: @search.id}, status: :ok # need to show search now. Not using ajax so here and line 55
     else
       raise Exception.new("no series series")
     end
@@ -52,19 +53,25 @@ class SearchesController < ApplicationController
   def update
     if @search
       @search.new_query({:current_query => params[:query]})
-      render json: {search_id: @search.id}, status: :ok
+      #self.show #render json: {search_id: @search.id}, status: :ok
     else
       render json: {}, status: :bad
     end
   end
 
   def update_or_create
-    if ["false", nil].include? params["search_type"]
+     # search type states:
+     # null == not pressed || no search id
+     #  true ==  new search
+     # false == continue search
+    if params["search_type"] =="false" || (params["search_type"]== "null" && session[:current_search_id] != nil) 
       @search = Search.find_by(id: session[:current_search_id]) if !@search
       self.update
     else
       self.create
     end
+    
+    render :show
   end
   # DELETE /searches/1
   # DELETE /searches/1.json
@@ -111,8 +118,8 @@ class SearchesController < ApplicationController
   end
 
   def recommendations
-    @series_list = Search.find_by(id: has_session[:id]).get_recommended if has_session[:session_status] == 'active_session'
-    render 'searches/recommendations'
+    @series_list = Search.find_by(id: session[:current_search_id]).get_recommended
+    render 'searches/recommendations', locals: { recommended_list: @series_list }
   end
 
   private

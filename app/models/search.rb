@@ -19,7 +19,7 @@ class Search < ApplicationRecord
 	def create_series_list(ext_series, language:"en_US",search_id: self.id, list_type: "search")
 		# @todo can probably remove search_id param then use self.id
 		ext_series = [ext_series] if !ext_series.kind_of?(Array)
-		SeriesList.create(:language => language, :external_series => ext_series, :search_id => search_id, :list_type => list_type)
+		SeriesList.new(:language => language, :external_series => ext_series, :search_id => search_id, :list_type => list_type).save
 	end
 
 	def new_query(query)
