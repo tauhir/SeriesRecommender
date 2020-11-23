@@ -180,14 +180,12 @@ function submitSearch(el) {
     input.setAttribute('name', 'search_type');//set the param name
     input.setAttribute('value', newSearch);//set the value
     input.setAttribute('type', 'hidden')//set the type, like "hidden" or other
-
     el.appendChild(input);//append the input to the form
-	debugger;
     el.submit();//send with added input
 }
 
 function new_search(search) {
-		newSearch == search
+		newSearch = search;
 }
 // @TODO, why is window constantly needed? See this as starting point
 //https://stackoverflow.com/questions/60048206/why-are-my-js-erb-views-not-working-when-using-webpacker-in-rails-6-with-bootstr

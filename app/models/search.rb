@@ -73,7 +73,7 @@ class Search < ApplicationRecord
 			recommends_results[series] =( percentage > 0 ? percentage : nil )
 		end
 		recommends_results = recommends_results.compact.sort_by {|k, v| -v}.to_h.keys # removes all keys with nil values, then sorts by descending values - best show first 
-		
+		return false if recommends_results.empty? # @todo tell user that there aren't likes yet
 		recommend_list = SeriesList.where(list_type: "recommended").find_by(search_id: self.id)
 		if recommend_list
 			recommend_list.set_series(recommends_results)

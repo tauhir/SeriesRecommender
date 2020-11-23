@@ -11,7 +11,6 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    
     if @search
       #this for when brought here locally
       @search
@@ -71,7 +70,7 @@ class SearchesController < ApplicationController
       self.create
     end
     
-    render :show
+    redirect_to action: "show", id: @search.id
   end
   # DELETE /searches/1
   # DELETE /searches/1.json
