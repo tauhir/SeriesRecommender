@@ -2,8 +2,13 @@
 <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
     <div id="wholebar">
         <a href="/">Popular</a><br>
-        <a href="/recommended">Recommendations</a><br>
-        <a href="#">My Searches</a><br>
+        <% if has_recommended %>
+            <a href="/recommended">Recommendations</a><br>
+        <% end %>
+        <% if user_signed_in? %>
+          <a href="#">My Searches</a><br>
+        <% end %>
+
 
         <div class="wrap">
             <form action="/searches/checks" method="post" onsubmit="event.preventDefault();submitSearch(this)">

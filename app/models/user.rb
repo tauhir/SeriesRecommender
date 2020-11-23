@@ -5,5 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :searches
   
+  def get_searches
+    Searches.find_by(user: self.id)
+  end
          
 end
