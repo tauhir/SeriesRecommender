@@ -41,7 +41,12 @@
     </div>
     <div id="smallbar">
         <i class="fas fa-tv fa-3x icons"></i><br>
-        <i class="fas fa-star fa-3x icons"></i><br>
+        <% if has_recommended %>
+            <i class="fas fa-star fa-3x icons"></i><br>
+        <% end %>
+        <% if user_signed_in? %>
+          <% #@todo add icon here %>
+        <% end %>
         <i class="fas fa-search fa-3x icons"></i><br>
         <div class = "bottom">
           
