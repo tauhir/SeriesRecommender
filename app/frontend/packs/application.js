@@ -16,40 +16,6 @@ import FooImage from 'packs/images/image.png'
 import 'slick-carousel/slick/slick';
 //console.log("Hello from hello.js");
 
-$(document).ready(function(){
-	$('.my-carousel').slick({
-		slidesToShow: 12, //this fixes my problem with borders for now
-		infinite: true,
-		lazyLoad: 'ondemand',
-		arrows: true,
-		adaptiveHeight: true,
-		nextArrow: '<i class="fas fa-chevron-right nextArrowBtn"></i>',
-		prevArrow: '<i class="fas fa-chevron-left prevArrowBtn"></i>',	  
-		responsive: [
-			{
-			  breakpoint: 600,
-			  settings: {
-
-				slidesToShow: 3
-			  }
-			},
-			{
-			  breakpoint: 900,
-			  settings: {
-				slidesToShow: 6
-			  }
-			},
-			{
-			  breakpoint: 1200,
-			  settings: {
-				slidesToShow: 10
-			  }
-			}
-		  ]
-	  });
-  });
-
-
 function noImage(element) {
   //console.log("Hello from func");
   element.src=FooImage;

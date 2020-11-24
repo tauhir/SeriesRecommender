@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: [:edit, :update, :destroy]
+  before_action :set_search, only: [:edit, :update, :destroy, :show]
   
 
   # GET /searches
@@ -11,13 +11,7 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    if @search
-      #this for when brought here locally
-      @search
-    else 
-      @search = Search.find_by(id: params[:id])
-    end
-    # this should display the current search with recommended shows below
+    @search
   end
 
   # GET /searches/new
@@ -37,11 +31,7 @@ class SearchesController < ApplicationController
       :user_id          => user_signed_in? ? current_user.id : nil
     })
     if @search.save
-      # redirect_to "series_lists/#{@search.id}"
-      # redirect_to :controller => series_lists 
-      # session[:search_id] = @search.id
       session[:current_search_id] = @search.id
-      #render json: {search_id: @search.id}, status: :ok # need to show search now. Not using ajax so here and line 55
     else
       raise Exception.new("no series series")
     end
@@ -69,9 +59,9 @@ class SearchesController < ApplicationController
     else
       self.create
     end
-    
     redirect_to action: "show", id: @search.id
   end
+
   # DELETE /searches/1
   # DELETE /searches/1.json
   def destroy
@@ -82,20 +72,6 @@ class SearchesController < ApplicationController
     end
   end
   
-  def has_session
-    state = "no_session"
-    id = nil
-    if cookies[:last_query_time] && (Time.now-Time.parse(cookies[:last_query_time]))/3600 < 12 # this checks to see if the user was on the system in the last 12 hours, maybe should make it less
-      state = "active_session"
-    elsif cookies[:search_id]
-      state = "inactive_session"
-    end 
-    respond_to do |format|
-      format.js { render json: {session_status: state, id: cookies[:search_id]}, status: :ok }
-      format.html { {session_status: state, id: cookies[:search_id]} }
-    end
-
-  end
   # User thumbs up/thumbs downs a show
   # this should create a series list for likes or dislikes or append if
   # this call also determine whether to post to show action or respond to
@@ -112,7 +88,6 @@ class SearchesController < ApplicationController
       #create series list
       series = @search.create_series_list(seriesId, list_type: type)
     end
-    cookies[:last_query_time] = Time.now
     render json: {search: @search}, status: :ok
   end
 

@@ -4,22 +4,30 @@ require 'ApiConnection'
 class Search < ApplicationRecord
 	# @todo need to update this to be able to search next page and add to list. might need to add current page attrib?
 	# attr_accessor :query, :results, :pages
-	belongs_to :user, optional: true
-	attr_accessor :external_series
-	has_many :SeriesList
-	SEARCH_BASE = 'https://api.themoviedb.org/3/search/tv'
-	SIMILAR_BASE = 'https://api.themoviedb.org/3/tv/'
-	before_save :complete_search
-	after_save :post_search
+	belongs_to		:user, optional: true
+	attr_accessor	:external_series
+	has_many		:SeriesList
+	before_save		:complete_search
+	after_save		:post_search
 
-	def get_series # maybe just the i
-		SeriesList.where(search_id: self.id, list_type: "search").last
+	SEARCH_BASE 	='https://api.themoviedb.org/3/search/tv'
+	SIMILAR_BASE 	='https://api.themoviedb.org/3/tv/'
+
+	def get_series
+		SeriesList.where(
+			search_id:	self.id,
+			list_type:	"search"
+			).last
 	end
 	
-	def create_series_list(ext_series, language:"en_US",search_id: self.id, list_type: "search")
-		# @todo can probably remove search_id param then use self.id
-		ext_series = [ext_series] if !ext_series.kind_of?(Array)
-		SeriesList.new(:language => language, :external_series => ext_series, :search_id => search_id, :list_type => list_type).save
+	def create_series_list(ext_series, language:"en_US", list_type: "search")
+		ext_series = [ext_series] unless ext_series.kind_of?(Array)
+		SeriesList.new(
+			:language 			=> language,
+			:external_series 	=> ext_series,
+			:search_id			=> self.id,
+			:list_type			=> list_type
+			).save
 	end
 
 	def new_query(query)
@@ -42,14 +50,13 @@ class Search < ApplicationRecord
 		# 		in above, if value is not in a list use 1.1 as its worse than being last (arb number lol ) @todo get better way then 1.1
 		# 	The results can be made into a hash or something and will determine order
 		# 	This will update whenever a user likes/dislikes something
-		return nil if !self.get_liked #should display a section telling users to start liking to get started
+		return nil unless self.get_liked #should display a section telling users to start liking to get started
 		liked = self.get_liked.get_list
 		disliked = self.get_disliked.try(:get_list) 
 		
 		recommends = []		#going to be the 2d array
 		
 		liked.each do |series|
-
 			recommends.append( get_recommended_series(series) )
 		end
 		iterating_array = recommends.flatten.uniq # to make a single array to iterate through and remove duplicates

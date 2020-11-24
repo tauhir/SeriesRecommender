@@ -4,7 +4,6 @@ class SeriesListsController < ApplicationController
   # GET /series_lists
   # GET /series_lists.json
   def index
-    byebug
     @series_lists = SeriesList.all
   end
 
@@ -15,7 +14,7 @@ class SeriesListsController < ApplicationController
   # GET /series_lists/1
   # GET /series_lists/1.json
   def show
-    @series_list = SeriesList.find_by_search_id(params[:id])
+    @series_list
   end
 
   # GET /series_lists/new
