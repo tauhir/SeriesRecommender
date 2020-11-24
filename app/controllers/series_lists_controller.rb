@@ -33,7 +33,7 @@ class SeriesListsController < ApplicationController
 
     respond_to do |format|
       if @series_list.save
-        format.html { redirect_to @series_list, notice: 'Series list was successfully created.' }
+        format.html { redirect_to @series_list, notice: "Series list was successfully created." }
         format.json { render :show, status: :created, location: @series_list }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class SeriesListsController < ApplicationController
   def update
     respond_to do |format|
       if @series_list.update(series_list_params)
-        format.html { redirect_to @series_list, notice: 'Series list was successfully updated.' }
+        format.html { redirect_to @series_list, notice: "Series list was successfully updated." }
         format.json { render :show, status: :ok, location: @series_list }
       else
         format.html { render :edit }
@@ -61,19 +61,20 @@ class SeriesListsController < ApplicationController
   def destroy
     @series_list.destroy
     respond_to do |format|
-      format.html { redirect_to series_lists_url, notice: 'Series list was successfully destroyed.' }
+      format.html { redirect_to series_lists_url, notice: "Series list was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_series_list
-      @series_list = SeriesList.find_by_search_id(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def series_list_params
-      #params.require(:series_list).permit(:api_id,, :name,language,origin_country)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_series_list
+    @series_list = SeriesList.find_by_search_id(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def series_list_params
+    # params.require(:series_list).permit(:api_id,, :name,language,origin_country)
+  end
 end
