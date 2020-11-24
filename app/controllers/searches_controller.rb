@@ -54,7 +54,7 @@ class SearchesController < ApplicationController
      #  true ==  new search
      # false == continue search
     if params["search_type"] =="false" || (params["search_type"]== "null" && session[:current_search_id] != nil) 
-      @search = Search.find_by(id: session[:current_search_id]) if !@search
+      @search = Search.find_by(id: session[:current_search_id]) unless @search
       self.update
     else
       self.create
