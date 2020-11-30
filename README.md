@@ -1,9 +1,9 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="SeriesRecommender" />
+  <img src="./seriesrecommender.gif" alt="SeriesRecommender" />
 
   &#xa0;
 
-  <!-- <a href="https://seriesrecommender.netlify.app">Demo</a> -->
+  <!-- <a href="https://series-recommender.herokuapp.com">Demo</a> -->
 </div>
 
 <h1 align="center">SeriesRecommender</h1>
