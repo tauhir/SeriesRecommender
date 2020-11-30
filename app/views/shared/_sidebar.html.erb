@@ -2,15 +2,28 @@
 <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
     <div id="wholebar">
         <a href="/">Popular</a><br>
-        <a href="/recommended">Recommendations</a><br>
-        <a href="#">My Searches</a><br>
+        <% if has_recommended %>
+            <a href="/recommended">Recommendations</a><br>
+        <% end %>
+        <% if user_signed_in? %>
+          <a href="#">My Searches</a><br>
+        <% end %>
+
 
         <div class="wrap">
-            <form action="javascript:hasSession()" class="search">
+            <form action="/searches/checks" method="post" onsubmit="event.preventDefault();submitSearch(this)">
+              <div class="search">
                 <input type="text" class="searchTerm" type="search" placeholder="Game of Thrones" id ='query' name="query">
-                <button type="submit" class="searchButton">
+                <button type="submit" class="searchButton" >
                     <i class="fa fa-search"></i>
                 </button>
+              </div>
+                <% if has_search %>
+                  <div class="btn-group " id="searchbuttons" role="group" name="search_type">
+                    <button type="button" class="btn btn-secondary" onclick="new_search(true)">New Search</option>
+                    <button type="button" class="btn btn-secondary" onclick="new_search(false)">Continue Search</option>             
+                  </div>
+                <% end %>
             </form>
         </div>
 
@@ -28,7 +41,12 @@
     </div>
     <div id="smallbar">
         <i class="fas fa-tv fa-3x icons"></i><br>
-        <i class="fas fa-star fa-3x icons"></i><br>
+        <% if has_recommended %>
+            <i class="fas fa-star fa-3x icons"></i><br>
+        <% end %>
+        <% if user_signed_in? %>
+          <% #@todo add icon here %>
+        <% end %>
         <i class="fas fa-search fa-3x icons"></i><br>
         <div class = "bottom">
           
