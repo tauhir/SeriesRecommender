@@ -105,7 +105,7 @@ $ ./bin/webpack-dev-server & bundle exec rails s && fg
 
 The following list includes features that need to be worked on and bugs that need to be fixed
  - optimize demo site (currently searching is extremely slow) 
- - 
+ - Make use of docker
  - Share lists
  - Show user where they can watch 
 
