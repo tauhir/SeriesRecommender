@@ -104,8 +104,8 @@ $ ./bin/webpack-dev-server & bundle exec rails s && fg
 ## :dart: Todo ##
 
 The following list includes features that need to be worked on and bugs that need to be fixed
- - Build My Searches section
- - Login Functionality
+ - optimize demo site (currently searching is extremely slow) 
+ - 
  - Share lists
  - Show user where they can watch 
 
