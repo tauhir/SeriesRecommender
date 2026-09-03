@@ -2,8 +2,6 @@
   <img src="./seriesrecommender.gif" alt="SeriesRecommender" />
 
   &#xa0;
-
-  <!-- <a href="https://series-recommender.herokuapp.com">Demo</a> -->
 </div>
 
 <h1 align="center">SeriesRecommender</h1>
@@ -33,7 +31,6 @@
 <hr> -->
 
 <p align="center">
-  <a href="https://series-recommender.herokuapp.com">Demo</a> &#xa0; | &#xa0; 
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
@@ -48,7 +45,9 @@
 
 ## :dart: About ##
 
-I needed a way to find television shows I might like so I built this webapp. It makes use of TMDB's API to find and displays tv shows which can then be liked/disliked which will help determine a recommended list.
+I needed a way to find television shows I might like so I built this webapp. It uses the TMDB API to find and display TV shows, which you can like or dislike to build up a recommended list.
+
+Built in 2020 as a side project. It used to run on Heroku's free tier, so there's no hosted demo any more — the gif above shows it in action, and the steps below get it running locally.
 
 ## :sparkles: Features ##
 
@@ -103,26 +102,16 @@ $ ./bin/webpack-dev-server & bundle exec rails s && fg
 
 ## :dart: Todo ##
 
-The following list includes features that need to be worked on and bugs that need to be fixed
- - optimize demo site (currently searching is extremely slow) 
- - Make use of docker
- - Share lists
- - Show user where they can watch 
-
- ```bash
- TODOs from code:
- - app/models/search.rb 
-  - line 5:need to update this to be able to search next page and add to list. might need to add current page attrib?
-  - line 19:can probably remove search_id param then use self.id 
-  - line 112: deal with search with no results
-- app/frontend/packs/application.js
-  - line 133: check to see if no search options left and let user know
-  - line 163: find better method than using window
-```
+Ideas that never made it in:
+ - Speed up search (it's slow)
+ - Dockerise the setup
+ - Share lists with other people
+ - Show where each show is available to stream
+ - Handle searches with no results, and paginate past the first page
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE) file.
 
 
 Made with :heart: by <a href="https://github.com/tauhir" target="_blank">Tauhir</a>
